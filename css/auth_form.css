@@ -1,0 +1,50 @@
+.auth_form{
+
+	
+}
+.table_auth_form{
+    border: 4px groove black; /* Параметры границы */
+    background: linear-gradient(#17aaff, #a6f6ff);
+    padding: 20px; /* Поля вокруг текста */
+    width: 400px;
+    margin: auto;
+    font-weight: bold;
+    border-radius: 7%;
+    box-shadow:  0 0 25px 5px white; 
+    text-shadow:  1px 1px 1px white;
+}
+.table_auth_form input{
+	height: 15px;
+	width: 95%; /* Ширина поля в пикселах */
+	padding: 6px 0 4px 10px;
+	margin: 0 0 5px 0;
+	border: 3px solid #cecece;
+	background: #F6F6f6;
+	border-radius: 5px;
+	box-shadow:  3px 3px 5px 1px black; 
+} 
+.table_auth_form input:hover{
+	border: 3px solid #3ddfff;
+	font-weight: bold;
+}
+.table_auth_form input.button_set{
+	width: 100px;
+	height: 30px;
+	font-size: 12px;
+	box-shadow:  3px 3px 5px 1px black;
+	margin-top:10px; 
+	padding: 0px;
+}
+.table_auth_form input.button_set:active{
+	box-shadow:  inset 2px 2px 5px 1px black,
+					 inset -2px -2px 5px 1px black; 		
+	outline:none !important;			 
+}
+/* кнопка ОТПРАВИТЬ в форме заполнения данных*/
+.table_auth_form td:last-child{
+	text-align: center;
+}
+.table_auth_form td{
+	text-align: left;
+	width: 100px;
+}

@@ -1,0 +1,55 @@
+/* блок с сылкой печати и формой выбора даты*/
+.print_and_date div{
+	display: inline-block;	
+	width: 48%;
+	margin: 0;
+	padding: 0;
+}
+.print_and_date {
+	text-align: center;	
+}
+#monitor_print{
+	text-align: left;
+}
+#monitor_print a{
+	text-decoration: none;
+	padding-right: 55px;
+  	background-position: 0 0;
+	background: url(../img/print.png) no-repeat right;
+	background-size: 48px 48px;
+	display: inline-block;
+	line-height: 35px;
+	color: #000;
+	text-shadow: 0 0 5px white;
+}
+#monitor_print a:active{
+	color: #000;
+}
+#monitor_print a:visited{
+	color: #000;
+}
+#monitor_form{
+	text-align: right;
+	color: #000;
+	text-shadow: 0 0 5px white;
+}
+.print_and_date form .date{
+	display: inline;
+	margin: 0px 0px;
+	padding: 5px;
+	width: 120px;
+	height: 15px;
+	border: 3px solid #cecece;
+	border-radius: 3px;
+	box-shadow:  1px 1px 2px 1px black; 
+}
+.print_and_date form .date:hover{
+	border: 3px solid #3ddfff;
+}
+.print_and_date form input[type="submit"]{
+	padding: 0;
+	width: 100px;
+	height: 25px;	
+	box-shadow:  1px 1px 2px 1px black; 
+	
+}

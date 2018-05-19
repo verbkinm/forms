@@ -1,0 +1,334 @@
+/* убираем рамки при фокусе*/
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {/* */
+	border: none;
+}
+
+
+/* BODY */
+body{
+	font-family: Arial;
+	min-width: 800px;
+}
+body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_report{
+	text-align: center;
+}
+body{
+	background-color: #bfbfbf;
+}
+.body_index .content{
+	text-align: center;
+}
+
+/* Ссылки-кнопки */
+.content .button{
+  display: inline-block;
+  margin: auto;
+  width: 25em;
+  height: 2.5em;
+  line-height: 2.5em;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #777;
+  font-size: 20px;
+  color: #fff;
+  outline: none;
+  border: 2px solid #17aaff;
+  border-radius: 5px;
+  box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+  background: linear-gradient(#a6f6ff, #3ddfff 48%, #63c6ff 52%, #17aaff);
+  margin-top: 5px;
+}
+.content .button:active {
+  top: .1em;
+  left: .1em;
+  box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}
+.content .button:hover{
+	text-decoration: underline;
+}
+
+/* таблица формы заполнения данных */
+.table_set_data{
+    border: 4px groove black; /* Параметры границы */
+    background: linear-gradient(#17aaff, #a6f6ff);
+    padding: 20px; /* Поля вокруг текста */
+    width: 700px;
+    margin: auto;
+    font-weight: bold;
+    border-radius: 5%;
+    box-shadow:  0 0 25px 5px white; 
+    text-shadow:  1px 1px 1px white;
+}
+.table_set_data input, .table_set_data textarea, .table_set_data select {
+	height: 30px;
+	width: 95%; /* Ширина поля в пикселах */
+	padding: 6px 0 4px 10px;
+	border: 3px solid #cecece;
+	background: #F6F6f6;
+	border-radius: 5px;
+	box-shadow:  3px 3px 5px 1px black; 
+} 
+.table_set_data input:hover, .table_set_data textarea:hover, .table_set_data select:hover{
+	border: 3px solid #3ddfff;
+	font-weight: bold;
+}
+.table_set_data textarea{
+	height: 100px;
+	box-shadow:  3px 3px 5px 1px black; 
+}
+.table_set_data select{
+	height: 35px;
+	width: 157px;
+	box-shadow:  3px 3px 5px 1px black; 
+}
+.table_set_data input.button_set{
+	width: 180px;
+	height: 50px;
+	font-size: 18px;
+	box-shadow:  3px 3px 5px 1px black; 
+}
+.table_set_data input.button_set:active{
+	box-shadow:  inset 2px 2px 5px 1px black,
+					 inset -2px -2px 5px 1px black; 		
+	outline:none !important;			 
+}
+/* кнопка ОТПРАВИТЬ в форме заполнения данных*/
+.table_set_data td:last-child{
+	text-align: center;
+}
+.table_set_data td{
+	width: 200px;
+	text-align: left;
+}
+
+/*select при регистрации*/
+#select_role ,#select_user{
+	width: 100%;
+}
+
+/* общая таблица тех, кто подал информацию*/
+.table_monitor, .table_user_list {
+    width: 100%; /* Ширина таблицы */
+    border: 4px double black; /* Рамка вокруг таблицы */
+    border-collapse: collapse; /* Отображать только одинарные линии */
+    border: 4px groove black; /* Параметры границы */
+    padding: 20px; /* Поля вокруг текста */
+    margin: auto;
+}
+.table_monitor tr:nth-child(even), .table_user_list tr:nth-child(even){ 
+	background-color: #EEE; 
+	}
+.table_monitor tr:hover td, .table_user_list tr:hover td{
+	color: white;
+  background: #F27AFF;
+  text-shadow: 0 0 2px black;
+}
+.table_monitor thead:hover td, .table_user_list thead:hover td{
+  background: linear-gradient(#17aaff, #a6f6ff);
+  text-shadow: 0 0 2px white;
+  color: black;
+}
+.table_monitor td, .table_user_list td{ 
+	text-align: center;
+    padding: 5px; /* Поля вокруг содержимого ячеек */
+    border: 1px solid black; /* Граница вокруг ячеек */
+	
+}
+.table_monitor thead, .table_user_list thead{
+	text-align: center;
+	font-weight: bold;
+	background:  linear-gradient(#17aaff, #a6f6ff);
+	text-shadow:  1px 1px 1px white;
+}
+.table_monitor caption, .table_user_list caption{
+	font-weight: bolder;
+	padding: 2px;
+	font-size: 18px;
+	text-shadow:  1px 1px 1px white;
+}
+.table_monitor {
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-size: 14px;
+	font-family: Arial;
+	text-align: center;
+}
+.table_monitor tr td {
+	border: 1px solid black;
+	padding: 3px;
+}
+
+/* HEADER */
+header{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 50px;
+	width: 100%;
+	min-width: 800px;
+	background-image: url(lyceum.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background:  linear-gradient(#17aaff, #a6f6ff);
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 1px white;
+	line-height:50px;
+	white-space: nowrap;
+}
+header a{
+	font-size: 14px;
+	font-weight: bolder;
+	text-decoration: none;
+}
+.header_text{
+	display: inline-block;
+	text-align: left;
+	width: 70%;
+	padding-left: 30px;
+}
+.header_text a, .header_text a:active{
+	font-size: 24px;
+	color: #FF9109;
+	text-shadow: 0 0 5px #9604A6;
+					 
+}
+
+
+/* блок приветствия текущего пользователя*/
+.login_block{
+	display: inline-block;
+	font-size: 10px;
+	width: 30%;
+}
+
+
+
+/* блок основного содержания */
+.content{
+  margin: 20px auto;
+  margin-top: 100px;
+  height: 55px;
+  width: 100%;
+}
+
+
+
+/*МЕНЮ*/
+.menu_div{
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	min-width: 800px;
+	height: 40px;
+	background-color: #666;
+	left: 0;
+	top: 50px;
+	
+}
+.ul_menu{
+	margin: 0;
+	padding: 0;
+}
+.ul_menu li{
+	display: inline-block;
+}
+.ul_menu li:hover { 
+	background-color: #666; 
+}
+.ul_menu li a {
+  display: block;
+  padding: 10px;
+  width: 150px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #666; 
+}
+.ul_menu a:hover { 
+	background-color: #00A2FF; 
+}
+.ul_menu ul{
+	display: none;
+}
+.ul_menu li:hover ul{ 
+	display: block; 
+}
+.ul_menu li ul{
+	position: absolute;
+}
+
+.ul_menu li ul{
+	padding: 0;
+}
+.ul_menu li{
+	position: relative;
+}
+
+/*Кнопка удалить и изменить*/
+.form_edit_button{
+	background-image:url(../img/edit.png);
+	background-size: contain;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+}
+.form_delete_button{
+	background-image:url(../img/trash.png);
+	background-size: contain;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+}
+.body_list form{
+	width: 30px;
+	display: inline-block;
+	padding: 0;
+	margin: 5px 5px;
+}
+
+/*Сообщения об успешной\неуспешной отправки данных или */
+.message_correct{
+	color: green;
+	text-align: center;
+	font-size: 26px;
+}
+.message_incorrect{
+	color: red;
+	text-align: center;
+	font-size: 26px;
+}
+
+/*Формы печати заявок и др.*/
+form .date{
+	display: inline;
+	height: 20px;
+	margin: 0px 0px;
+	width: 89%;
+}
+.body_print_eatery_report table td{
+	border: 0px solid black;
+}
+.interval{
+padding: 0;
+margin: 0;	
+}
+.interval_start, .interval_end{
+	display: inline-block;
+	height: 35px;
+	width: 49%;
+	margin: 0;
+	padding: 0;
+}
+.interval_start{
+	text-align: left;
+}
+.interval_end{
+	text-align: right;
+}
