@@ -19,17 +19,18 @@
 	
 	if (isset($_POST["login"]) && isset($_POST["password"])) { //Если логин и пароль были отправлены
 	    if (!auth($_POST["login"], $_POST["password"],$mysqli)) { //Если логин и пароль введен не правильно
-	        echo "<h2 style=\"color:red;\">Логин и пароль введен не правильно!</h2>";
+	        echo "<h2 style=\"color:red;\">Логин или пароль введен не правильно!</h2>";
 	    }
 	}
-
 	if($_SESSION["is_auth"])
 	{
 		header('Location: ../index.php');
 	}
-	else {?>
+	else 
+	{?>
+		<!-- <div class='message_incorrect'>База данных до 12.10.18 была повреждена! <br>Для восстановления данных за текущую неделю - обратитесь в бухгалтерия<br></div> -->
 		<h3>Авторизация:</h3>
-		<form method="post" action="" class="auth_form">
+		<form method="post" action="/auth/auth_form.php?sign=now" class="auth_form">
 			<table class="table_auth_form">
 				<tr>
 			   	<td>

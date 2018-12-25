@@ -30,27 +30,14 @@ echo"
 					</td>
 					<td>
 						<select size='1' required name='class' >
-							<option disabled>Выберите класс</option>
-							<option value='0'>Нет</option>
-							<option value='1'>1</option>
-							<option value='2'>2</option>
-							<option value='3'>3</option>
-							<option value='4'>4</option>
-							<option value='5'>5</option>
-							<option value='6'>6</option>
-							<option value='7'>7</option>
-							<option value='8'>8</option>
-							<option value='9'>9</option>
-							<option value='10'>10</option>
-							<option value='11'>11</option>
+							<option disabled>Выберите класс</option>";
+						include("../blocks/block_number_of_classes.php");
+						echo"
 						</select>
 						<select size='1' required name='class_name' >
-							<option disabled>Выберите класс</option>
-							<option value='0'>Нет</option>
-							<option value='А'>А</option>
-							<option value='Б'>Б</option>
-							<option value='В'>В</option>
-							<option value='Г'>Г</option>
+							<option disabled>Выберите класс</option>";
+							include("../blocks/block_class_letters.php");
+						echo"
 						</select>
 					</td>
 				</tr>
@@ -83,17 +70,15 @@ echo"
 						Роль:
 					</td>
 					<td>
-						<select size='1' required name='role' id='select_role' >
-							<option disabled>Выберите роль пользователя</option>
-							<option value='user'>Пользователь</option>
-							<option value='monitor'>Монитор</option>
-							<option value='admin'>Администратор</option>
-						</select>
+						<select size=5 required name='roles[]' id='select_role' multiple>
+							<option disabled>Выберите роль пользователя</option>";
+							include("roles.php");
+						echo "</select>
 					</td>
 				</tr>
 				<tr>
 					<td colspan='2' style='text-align:center;'>
-						<br><input type='submit' value='Отправить' class='button_set'>
+						<br><input type='submit' value='Создать' class='button_set'>
 					</td>
 				</tr>
 			</table>

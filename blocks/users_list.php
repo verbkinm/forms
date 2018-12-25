@@ -1,5 +1,5 @@
 <?php
-	if($_SESSION['role'] != "admin") {
+	if( !inRoles("admin") ) {
 	
 		if(empty($user_name)) {
 			echo"

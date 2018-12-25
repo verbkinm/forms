@@ -36,36 +36,13 @@ echo"
 					</td>
 					<td>
 						<select size='1' required name='class' >
-							<option disabled>Выберите класс</option>
-							<option value='0'>Нет</option>";
-							$i = 1;
-							while($i < 12) {
-								if( ($i) == $class ) {
-									$selected = "selected";
-								}
-								echo"
-									<option value='".$i."' ".$selected.">".$i++."</option>
-								";	
-								unset($selected);
-							}
+							<option disabled>Выберите класс</option>";
+						include("../blocks/block_number_of_classes.php");
 						echo"
 						</select>
 						<select size='1' required name='class_name' >
-							<option disabled>Выберите класс</option>
-							<option value='0'>Нет</option>";
-							/*192 - А, 196 - Г*/
-							$i = 192;
-							while($i < 196) {
-								$char = chr($i++);
-								$utf8_char = iconv('CP1251', 'UTF-8', $char);
-								if( $utf8_char == $class_name ) {
-									$selected = "selected";
-								}
-								echo"
-									<option value='".$utf8_char."' ".$selected.">".$utf8_char."</option>
-								";	
-								unset($selected);
-							}
+							<option disabled>Выберите класс</option>";
+							include("../blocks/block_class_letters.php");
 						echo"
 						</select>
 					</td>
@@ -99,17 +76,15 @@ echo"
 						Роль:
 					</td>
 					<td>
-						<select size='1' required name='role' id='select_role' >
-							<option disabled>Выберите роль пользователя</option>
-							<option value='user'>Пользователь</option>
-							<option value='monitor'>Монитор</option>
-							<option value='admin'>Администратор</option>
-						</select>
+						<select required name='roles[]' id='select_role' multiple >
+							<option disabled>Выберите роль пользователя</option>";
+							include("roles.php");
+						echo "</select>
 					</td>
 				</tr>
 				<tr>
 					<td colspan='2' style='text-align:center;'>
-						<br><input type='submit' value='Отправить' class='button_set'>
+						<br><input type='submit' value='Изменить' class='button_set'>
 					</td>
 				</tr>
 			</table>

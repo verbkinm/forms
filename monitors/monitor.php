@@ -15,30 +15,27 @@
 
 	include("../lib/connect.php");
 	include("../lib/lib_auth.php");
-	include ("../blocks/header.php");
-	include ("../blocks/menu.php");
+	include("../blocks/header.php");
+	include("../blocks/menu.php");
 	
- 	if(empty($_POST['date'])) {
-	 	$date = date("Y-m-d");
- 	}
- 	else {
-	 	$date=$_POST['date'];
- 	}
+	check_permission(array('admin', 'user', 'monitor')); 
+	
+	include("lib_monitors.php");
+	
+ 	if(empty($_GET['date'])) {$date = date("Y-m-d");}
+ 	else {$date=$_GET['date'];}
+ 	
  	echo "
  	<div class='content'>	
  	
  		<div class='print_and_date'>
 	  		<div id='monitor_print'>
 		  		<a href='../reports/report_monitor.php?monitor=eatery&date=".$date."' class='' target='_blank'>Печать</a>
-		  	</div>
- 			<div id='monitor_form'>
-		   	<form action='monitor.php' method='post'>
-			   	Выбор даты:
-		   		<input type='date' name='date' value='".date("Y-m-d")."' class='date'>
-		   		<input type='submit' value='Перейти' >
-		  		</form>
-	  		</div>
-		 </div>
+		  	</div>";
+	insert_date_form();
+	echo"
+
+	</div>
 		 
 		 <table class='table_monitor'>
 		 <caption>Заявки в столовую - данные на " .$date. " - ".date("H:i:s")."</caption>  
@@ -50,12 +47,20 @@
 						<td>Кол-во <br>льготников</td>
 						<td id='td_names_lg' >Ф.И.О. <br>льготников</td>
 						<td>Классный <br>руководитель</td>
-						<td>Время <br>добавления</td>
-					</tr>
+						<td>Время <br>добавления</td>";
+						if( inRoles("admin") || inRoles("editor")  )
+						{
+							echo"
+							<td>Редактировать</td>";
+						}
+					echo "</tr>
 				</thead>";
 		
 	// Выполняем запрос SQL
 	$row_count=0;
+	$total_count					= 0;
+	$total_count_lg				= 0;
+	
 	for ($i = 1; $i <= 11; $i++) {
 		$sql = "SELECT * FROM eatery WHERE date = '$date' AND class = '$i' ORDER BY class_name";	
 		$result = check_error_db($mysqli, $sql);
@@ -68,10 +73,40 @@
 				<td>". $request['count_lg']. "</td>
 				<td>". $request['names_lg']. "</td>
 				<td>". $request['user_name']. "</td>
-				<td>". $request['time']. "</td>
-			</tr>";
+				<td>". $request['time']. "</td>";
+				if( ($_SESSION['role'] == "admin") || ($_SESSION['role'] == "editor") )
+				{
+					echo"
+					<td>
+						<form action='../forms/eatery_edit.php' method='post'>
+							<input name='id' 			value='".$request['id']."' hidden>
+							<input type='submit' value='' class='form_edit_button'>
+						</form>
+					</td>";
+				}
+			echo"</tr>";
+			$total_count					+= $request['count'];
+			$total_count_lg 				+= $request['count_lg'];
 		}
 	}
+	echo"
+		<thead>
+			<tr>
+				<td colspan='2'>
+					Итого:
+				</td>
+				<td>
+					".$total_count."
+				</td>			
+				<td>
+					".$total_count_lg."
+				</td>			
+				<td colspan='3'>
+
+				</td>		
+			</tr>
+		</thead>
+	";
 	if($row_count==0) {
 		echo "
 				<tr>

@@ -31,9 +31,14 @@
 		$sql = "DELETE FROM `eatery_user_data` WHERE user_id = '$user_id'";
 		$result = check_error_db($mysqli, $sql);
 		correct_or_error($mysqli, $sql, "Запись о пользователе успещно удалена из таблицы eatery_user_data<br>");
+		
 		$sql = "DELETE FROM `medic_user_data`	WHERE user_id = '$user_id'";
 		$result = check_error_db($mysqli, $sql);
-		correct_or_error($mysqli, $sql, "Запись о пользователе успещно удалена из таблицы medic_user_data<br>");	
+		correct_or_error($mysqli, $sql, "Запись о пользователе успещно удалена из таблицы medic_user_data<br>");
+		
+		$sql = "DELETE FROM `roles` WHERE user_id = '$user_id'";
+		$result = check_error_db($mysqli, $sql);
+		correct_or_error($mysqli, $sql, "Запись о ролях успещно удалена из таблицы roles<br>");	
 		
 		$mysqli->close();
 	}

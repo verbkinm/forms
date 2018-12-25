@@ -1,11 +1,6 @@
 <?php				
-	if($_SESSION['role'] == "admin") {
-		echo"
-			<option value='А'>А</option>
-			<option value='Б'>Б</option>
-			<option value='В'>В</option>
-			<option value='Г'>Г</option>
-		";
+	if( inRoles("admin") ) {
+		include("block_class_letters.php");
 	}
 	else {
 		if(empty($class_name)) {

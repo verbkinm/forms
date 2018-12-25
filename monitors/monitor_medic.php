@@ -17,8 +17,12 @@
 	include ("../blocks/header.php");
 	include ("../blocks/menu.php");
 	
- 	if(empty($_POST['date'])) {$date = date("Y-m-d");}
- 	else {$date=$_POST['date'];}
+	check_permission(array('admin', 'user', 'monitor'));
+	
+	include("lib_monitors.php");
+	
+ 	if(empty($_GET['date'])) {$date = date("Y-m-d");}
+ 	else {$date=$_GET['date'];}
  	
  	echo "
  	<div class='content'>	
@@ -26,16 +30,9 @@
  		<div class='print_and_date'>
 	  		<div id='monitor_print'>
 		  		<a href='../reports/report_monitor.php?monitor=medic&date=".$date."' class='' target='_blank'>Печать</a>
-		  	</div>
- 			<div id='monitor_form'>
-		   	<form action='monitor.php' method='post'>
-			   	Выбор даты:
-		   		<input type='date' name='date' value='".date("Y-m-d")."' class='date'>
-		   		<input type='submit' value='Перейти' >
-		  		</form>
-	  		</div>
-		 </div>
-		 
+		  	</div>";
+	insert_date_form();
+	echo"
 		 <table class='table_monitor'>
 		 <caption>Информация о количестве отсутствующих - данные на " .$date. " - ".date("H:i:s")."</caption>  
 				<thead>
@@ -43,8 +40,8 @@
 					   <td> № </td>
 						<td>Класс</td>
 						<td>Кол-во <br>отсутствующих:</td>
-						<td>Отсутствующие <br>по болезни</td>
-						<td>Отсутствующие <br>по болезни - первично</td>
+						<td>Отсутствующие <br>по болезни <br>(простуда, ОРВИ, ГРИПП и т.д.)</td>
+						<td>Отсутствующие <br>по болезни - первично <br>(простуда, ОРВИ, ГРИПП и т.д.)</td>
 						<td>Классный <br>руководитель</td>
 						<td>Время <br>добавления</td>
 					</tr>

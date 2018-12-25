@@ -74,6 +74,9 @@ body{
 	border-radius: 5px;
 	box-shadow:  3px 3px 5px 1px black; 
 } 
+#select_role{
+	height:100%;
+}
 .table_set_data input:hover, .table_set_data textarea:hover, .table_set_data select:hover{
 	border: 3px solid #3ddfff;
 	font-weight: bold;
@@ -124,10 +127,12 @@ body{
 .table_monitor tr:nth-child(even), .table_user_list tr:nth-child(even){ 
 	background-color: #EEE; 
 	}
-.table_monitor tr:hover td, .table_user_list tr:hover td{
-	color: white;
-  background: #F27AFF;
-  text-shadow: 0 0 2px black;
+.table_monitor tr:hover {
+	border: 2px solid green;
+	background: linear-gradient(#17aaff, #a6f6ff);
+}
+.table_monitor thead tr:hover {
+	border: 1px solid black;
 }
 .table_monitor thead:hover td, .table_user_list thead:hover td{
   background: linear-gradient(#17aaff, #a6f6ff);

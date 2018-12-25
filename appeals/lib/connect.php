@@ -1,6 +1,5 @@
 <?php	
-
-	$mysqli = new mysqli('localhost', 'forms', 'u9G9BF0?Iv@%', 'forms.test'); 
+	$mysqli = new mysqli('localhost', 'appeals', 'M4UC0wxkmEgpXZ5R', 'appeals'); 
 	/* изменение набора символов на utf8 */
 	if (!mysqli_set_charset($mysqli, "utf8")) {
 		printf("Ошибка при загрузке набора символов utf8: %s\n", mysqli_error($mysqli));

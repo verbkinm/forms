@@ -43,8 +43,16 @@
 			echo"
 			<tr>
 				<td>". ++$row_count ."</td>
-				<td>". $request['login']."</td>
-				<td>". $request['role']. "</td>";
+				<td>".$request['login']."</td>
+				<td>";
+					$login = $request['login'];
+					$user_id = $mysqli->query("SELECT * FROM auth WHERE login = '$login'")->fetch_object()->id;
+					$sql2 = "SELECT * FROM roles WHERE user_id = '$user_id' ";	
+					$result2 = check_error_db($mysqli, $sql2);
+					while ($request2 = $result2->fetch_assoc()) 
+						echo $request2['role']."<br>";				
+				echo"
+				</td>";
 				if( ($request['class'] == 0) && ($request['class_name'] == 0) ) {
 					echo"
 						<td>Нет</td>

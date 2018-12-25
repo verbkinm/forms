@@ -36,12 +36,13 @@
 	$number_of_patients  = $result['number_of_patients'];
 	$patients_primary		= $result['patients_primary'];
 
-	if($_SESSION['role'] != "admin") {
+	if( !inRoles("admin") ) {
 		$disabled = "disabled";
 	}
 echo "
 	<div class='content'>	
 		<h3>Информация о количестве больных</h3>
+		<div class='message_incorrect'>Внимание! <br> После отправки - данные заявки исправить нельзя! <br> <br></div>
 		<form action='get.php' method='post'>
 			<input name='hide' value='medic' hidden>
 			<table class='table_set_data'>
@@ -57,7 +58,7 @@ echo "
 							";
 						}
 						echo"
-						<select size='1' required ".$disabled.">
+						<select size='1' required name='class' ".$disabled.">
 							<option disabled>Выберите класс</option>";
 							include("../blocks/select_class.php");
 						echo"
@@ -86,7 +87,7 @@ echo "
 				</tr>
 				<tr>
 					<td>
-						Отсутствующие по болезни:
+						Отсутствующие по болезни <br>(простуда, ОРВИ, ГРИПП и т.д.):
 					</td>
 					<td>
 						<input name='number_of_patients' required type='number' min='0' max='100' value='".$number_of_patients."'>
@@ -94,7 +95,7 @@ echo "
 				</tr>
 				<tr>
 					<td>
-						Первичных (по болезни):
+						Первичных по болезни <br>(простуда, ОРВИ, ГРИПП и т.д.):
 					</td>
 					<td>
 						<input name='patients_primary' required type='number' min='0' max='100' value='".$patients_primary."'>
@@ -120,8 +121,10 @@ echo "
 					</td>
 				</tr>
 				<tr>
-					<td colspan='2' style='text-align:center;'>
-						<br><input type='submit' value='Отправить' class='button_set'>
+					<td colspan='2' style='text-align:center;'>";
+					if( (($class == "0") || ($class_name == "0")) && (!inRoles("admin")) ) {$disabled_submit="disabled";}
+					echo"
+						<br><input type='submit' value='Отправить' class='button_set' ".$disabled_submit.">
 					</td>
 				</tr>
 			</table>

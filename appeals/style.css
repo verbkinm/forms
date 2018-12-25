@@ -1,0 +1,58 @@
+
+/* BODY */
+body{
+	font-family: Arial;
+	margin: 20px;
+/*	background-color: #bfbfbf;*/
+}
+.wrapper{
+/*	text-align: center;*/
+   margin-left: auto;
+   margin-right: auto;
+   padding: 20px;
+/*  	height: 55px;*/
+/*	max-width: 800px;*/
+/*  	text-align: center;*/
+  	text-decoration: none;
+  	text-shadow: 0 -1px 1px #fff;
+  	font-size: 14px;
+  	border: 2px solid #000;
+  	border-radius: 15px;
+  	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em grey;
+}
+.table{
+   border-collapse: collapse; /* Отображать только одинарные линии */
+   width: 100%;
+   margin: auto;
+}
+td, tr {
+/*	border: 2px solid #000;*/
+	text-align: left;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+}
+.td1, .td2{
+	width: 400px;
+}
+
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], 
+input[type="button"], input[type="submit"], select{
+	width: 100%;
+	height: 30px;
+}
+input[type="button"], input[type="submit"]{
+	width: 150px;
+}
+textarea{
+	width: 100%;
+	height: 200px;
+/*	max-width: 400px;*/
+}
+.buttonSubmit{
+	text-align: center;
+}
+
+.

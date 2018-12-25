@@ -37,12 +37,13 @@
 	$count_lg  	= $result['count_lg'];
 	$names_lg	= $result['names_lg'];
 
-	if($_SESSION['role'] != "admin") {
+	if( !inRoles("admin") ) {
 		$disabled = "disabled";
 	}	
 echo "
 <div class='content'>	
 	<h3>Заявка в столовую</h3>
+	<div class='message_incorrect'>Внимание! <br> После отправки - данные заявки исправить нельзя! <br> <br></div>
 	<form action='get.php' method='post'>
 		<input name='hide' value='eatery' hidden>
 		<table class='table_set_data'>
@@ -121,8 +122,10 @@ echo "
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2' >
-					<br><input type='submit' value='Отправить' class='button_set'>
+				<td colspan='2' >";
+					if( (($class == "0") || ($class_name == "0")) && !inRoles("admin") ) {$disabled_submit="disabled";}
+					echo"
+					<br><input type='submit' value='Отправить' class='button_set'".$disabled_submit.">
 				</td>
 			</tr>
 		</table>
