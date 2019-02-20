@@ -64,7 +64,7 @@
 						<span style="color: red;">*</span>Фамилия:
 					</td>
 					<td>
-						<input name="surname" type="text" required placeholder="Введите вашу фамилию" />
+						<input name="surname" type="text" required placeholder="Введите Вашу фамилию" />
 					</td>
 				</tr>
 				<tr>
@@ -72,7 +72,7 @@
 						<span style="color: red;">*</span>Имя:
 					</td>
 					<td>
-						<input name="name" type="text" required placeholder="Введите ваше имя" />
+						<input name="name" type="text" required placeholder="Введите Ваше имя" />
 					</td>
 				</tr>
 				<tr>
@@ -80,7 +80,7 @@
 						Отчество:
 					</td>
 					<td>
-						<input name="patronymic" type="text" placeholder="Введите ваше отчество" />
+						<input name="patronymic" type="text" placeholder="Введите Ваше отчество" />
 					</td>
 				</tr>
 				<tr>
@@ -88,7 +88,7 @@
 						Наименование организации (юридического лица):
 					</td>
 					<td>
-						<input name="name_of_company" type="text" placeholder="Введите наименование вашей организации" />
+						<input name="name_of_company" type="text" placeholder="Введите наименование Вашей организации" />
 					</td>
 				</tr>
 				<tr>
@@ -96,7 +96,7 @@
 						<span style="color: red;">*</span>e-mail
 					</td>
 					<td>
-						<input name="email" type="email" required placeholder="Введите адрес вашей электронной почты" />
+						<input name="email" type="email" required placeholder="Введите адрес Вашей электронной почты" />
 					</td>
 				</tr>
 				<tr>
@@ -104,7 +104,7 @@
 						Контактный телефон:
 					</td>
 					<td>
-						<input name="phone_number" type="tel" placeholder="Введите ваш контактный телефон" />
+						<input name="phone_number" type="tel" placeholder="Введите Ваш контактный телефон" />
 					</td>
 				</tr>
 				<tr>
@@ -245,7 +245,7 @@
 	//       console.log("Type: " + files[i].type);
 	        	if (files[i].size > 5242880) {
 	        		console.log("Size: " + files[i].size + " bytes");
-	        		alert("Не допустимый размер загружаемого файла!");
+	        		alert("Недопустимый размер загружаемого файла!");
 	        		file.value = "";    
 	        		return;    		
 	        	}
@@ -258,7 +258,7 @@
 	    			console.log("Type: " + files[i].type);
 	    		}
 	    		else {
-	    			alert(ext+" - не поддерживаемый формат файла!");
+	    			alert(ext+" - неподдерживаемый формат файла!");
 	        		file.value = "";    
 	        		return; 
 	    		}

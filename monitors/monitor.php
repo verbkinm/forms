@@ -53,7 +53,8 @@
 							echo"
 							<td>Редактировать</td>";
 						}
-					echo "</tr>
+					echo "
+					</tr>
 				</thead>";
 		
 	// Выполняем запрос SQL
@@ -74,7 +75,7 @@
 				<td>". $request['names_lg']. "</td>
 				<td>". $request['user_name']. "</td>
 				<td>". $request['time']. "</td>";
-				if( ($_SESSION['role'] == "admin") || ($_SESSION['role'] == "editor") )
+				if( inRoles("admin") || inRoles("editor") )
 				{
 					echo"
 					<td>
@@ -100,9 +101,14 @@
 				</td>			
 				<td>
 					".$total_count_lg."
-				</td>			
-				<td colspan='3'>
-
+				</td>";
+				if( inRoles("admin") || inRoles("editor") )
+					$col=1;
+				else
+					$col=0;;
+				
+				echo "<td colspan='".strval(3+$col)."'>
+				
 				</td>		
 			</tr>
 		</thead>
@@ -110,7 +116,7 @@
 	if($row_count==0) {
 		echo "
 				<tr>
-					<td colspan='7'><H1>Данные на это число отсутствуют!</H1></td>
+					<td colspan='".strval(7+$col)."'><H1>Данные на это число отсутствуют!</H1></td>
 				</tr>";
 	}
 $result->free();

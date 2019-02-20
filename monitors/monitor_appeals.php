@@ -93,6 +93,6 @@ $result->free();
 $mysqli->close();
 ?>
 	</table>
-	</div>
+	</div>	
  </body>
 </html>

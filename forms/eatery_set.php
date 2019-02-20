@@ -133,6 +133,6 @@ echo "
 </div>
   ";
 	$mysqli->close();
-?>
+?>	
  </body>
 </html>

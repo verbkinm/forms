@@ -12,10 +12,12 @@
 		}
 	}
 echo"
+<!-- <script type='text/javascript' src='../snow-fall.js'></script> -->
    <header>
    	<div class='header_text'>
-   		<a href='http://".$_SERVER['SERVER_NAME']."'>Система \"O<sub>3</sub>\"</a>
+   		<a href='http://".$_SERVER['SERVER_NAME']."'>Система \"O<sub>3</sub>\" </a>
    	</div>
+
    	<div class='login_block'>";
    		if(isAuth()) {
 				echo"Добро пожаловать, <strong>".$_SESSION['user_name']."</strong> <a href='?is_exit=1'>Выйти</a>";

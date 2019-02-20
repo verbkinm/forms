@@ -12,14 +12,12 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {/* */
 /* BODY */
 body{
 	font-family: Arial;
-	min-width: 800px;
+	background-color: #bfbfbf;
 }
 body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_report{
 	text-align: center;
 }
-body{
-	background-color: #bfbfbf;
-}
+
 .body_index .content{
 	text-align: center;
 }
@@ -178,7 +176,6 @@ header{
 	height: 50px;
 	width: 100%;
 	min-width: 800px;
-	background-image: url(lyceum.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	background:  linear-gradient(#17aaff, #a6f6ff);
@@ -195,15 +192,14 @@ header a{
 }
 .header_text{
 	display: inline-block;
-	text-align: left;
-	width: 70%;
-	padding-left: 30px;
+	text-align: right;
+	width: 50%;
+	padding-right:10px;
 }
 .header_text a, .header_text a:active{
 	font-size: 24px;
 	color: #FF9109;
-	text-shadow: 0 0 5px #9604A6;
-					 
+	text-shadow: 0 0 5px #9604A6;				 
 }
 
 
@@ -211,11 +207,28 @@ header a{
 .login_block{
 	display: inline-block;
 	font-size: 10px;
-	width: 30%;
+	width: 50%;
+	text-align: left;
+	padding-left:10px;
 }
 
-
-
+/* FOOTER 
+footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 30px;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background:  linear-gradient(#17aaff, #a6f6ff);
+	text-align: center;
+	text-shadow: 2px 2px 1px white;
+	line-height:30px;
+	white-space: nowrap;
+	font-size: 10px;
+} */
 /* блок основного содержания */
 .content{
   margin: 20px auto;
@@ -231,7 +244,7 @@ header a{
 	text-align: center;
 	position: fixed;
 	width: 100%;
-	min-width: 800px;
+	min-width: 1045px;
 	height: 40px;
 	background-color: #666;
 	left: 0;

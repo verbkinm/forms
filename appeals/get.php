@@ -89,6 +89,8 @@
 			sendMail($emailCollaborator, $appeals_id, $surname, $name, $patronymic, $url, false);
 		}
 		
+		sendSelfMail($appeals_id);
+		
 		header("Location: view.php?url=".$url);
 ?>	
 	</body>

@@ -68,7 +68,7 @@
 				<td>". $request['user_name']. "</td>
 				<td>". $request['date']." - ".$request['time']. "</td>
 				<td>". $request['last_login']. "</td>
-				<td><a href = 'https://gateway-bsd.litsey-yugorsk.ru:10000' target='_blank'>". $request['login_ip']."</a></td> 
+				<td>". $request['login_ip']."</td> 
 				<td>
 					<form action='edit_user_form.php' method='post'>
 						<input name='hide' value='delete_user' hidden>
@@ -90,5 +90,8 @@
 		?>		
 			</table>
 		</div>	
+		<?php
+			include ("blocks/footer.php");
+		?>	
 	 </body>
 </html>

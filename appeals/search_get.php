@@ -37,7 +37,7 @@
 	while ($row = mysqli_fetch_array($request2) ) {
 		sendMail($row['email'], $searchId, $row['surname'], $row['name'], $row['patronymic'], $result['url'], false);
    }
-   
+   echo $result['email'];
 	header("Location: search.html");
 ?>	
 
