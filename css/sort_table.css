@@ -1,0 +1,22 @@
+thead tr td:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+td.sorted[data-order="1"],
+td.sorted[data-order="-1"] {
+	position: relative
+}
+
+td.sorted[data-order="1"]::after,
+td.sorted[data-order="-1"]::after {
+	position: absolute;
+}
+
+td.sorted[data-order="-1"]::after {
+	content: "▼";
+}
+
+td.sorted[data-order="1"]::after {
+	content: "▲";
+}

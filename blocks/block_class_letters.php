@@ -1,10 +1,17 @@
 <?php
-echo"
-	<option value='0'>Нет</option>
-	<option value='А'>А</option>
-	<option value='Б'>Б</option>
-	<option value='В'>В</option>
-	<option value='Г'>Г</option>
-	<option value='Д'>Д</option>
-";
+	$array = ["Нет", "А", "Б", "В", "Г", "Д"];
+	$selected = "";
+	
+	foreach($array as $item)
+	{
+		if($item == $class_name)
+			$selected = "selected";
+		if($item == "Нет")
+		{
+			echo"<option value='0' $selected>Нет</option>";
+			continue;
+		}
+		echo"<option value='$item' $selected>$item</option>";
+		$selected = "";
+	}
 ?>

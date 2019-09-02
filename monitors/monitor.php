@@ -5,6 +5,8 @@
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/print_and_date.css">
+  	<link rel="stylesheet" href="../css/sort_table.css">
+	<script type='text/javascript' src='../js/sort_table.js'></script>
   <meta http-equiv="Refresh" content="15" />
   
   <title>Монитор - столовая</title>
@@ -41,13 +43,13 @@
 		 <caption>Заявки в столовую - данные на " .$date. " - ".date("H:i:s")."</caption>  
 				<thead>
 					<tr>		
-					   <td> № </td>
-						<td>Класс</td>
-						<td>Кол-во <br> детей</td>
-						<td>Кол-во <br>льготников</td>
+					   <td style='width:4%;'> № </td>
+						<td style='width:6%'>Класс</td>
+						<td style='width:6%'>Кол-во <br> детей</td>
+						<td style='width:9%'>Кол-во <br>льготников</td>
 						<td id='td_names_lg' >Ф.И.О. <br>льготников</td>
-						<td>Классный <br>руководитель</td>
-						<td>Время <br>добавления</td>";
+						<td style='width:10%'>Классный <br>руководитель</td>
+						<td style='width:9%'>Время <br>добавления</td>";
 						if( inRoles("admin") || inRoles("editor")  )
 						{
 							echo"

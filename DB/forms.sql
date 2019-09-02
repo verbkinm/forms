@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Дек 25 2018 г., 15:16
--- Версия сервера: 5.6.41
--- Версия PHP: 7.1.22
+-- Время создания: Сен 02 2019 г., 12:13
+-- Версия сервера: 5.6.44
+-- Версия PHP: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `forms.test`
+-- База данных: `forms`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,7 @@ CREATE TABLE `auth` (
   `id` int(11) NOT NULL,
   `login` varchar(65) NOT NULL,
   `password` varchar(65) NOT NULL,
+  `role` varchar(15) NOT NULL DEFAULT 'user',
   `user_name` varchar(20) DEFAULT NULL,
   `class` int(2) DEFAULT NULL,
   `class_name` varchar(1) DEFAULT NULL,
@@ -45,8 +46,8 @@ CREATE TABLE `auth` (
 -- Дамп данных таблицы `auth`
 --
 
-INSERT INTO `auth` (`id`, `login`, `password`, `user_name`, `class`, `class_name`, `date`, `time`, `last_login`, `login_ip`) VALUES
-(1, 'admin', '$2y$10$zo/seK8RIsc4Moz7cDFmUuh3nQnHdxxrCc90krR.Y.CVgxYztPcQ.', 'Администратор', 0, '0', '2018-12-13', '12:20:18', '2018-12-25 15:08:43', '192.168.3.13');
+INSERT INTO `auth` (`id`, `login`, `password`, `role`, `user_name`, `class`, `class_name`, `date`, `time`, `last_login`, `login_ip`) VALUES
+(1, 'admin', '$2y$10$CfswB90VKMQ.pBtuQnvzBOGTgSzPxiqW346aGQeZP3TVXmW3nR8XS', 'admin', 'Администратор', 0, '0', '2018-05-12', '08:50:12', '2019-09-02 11:47:14', '192.168.100.253');
 
 -- --------------------------------------------------------
 
@@ -67,13 +68,6 @@ CREATE TABLE `eatery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `eatery`
---
-
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `eatery_user_data`
 --
 
@@ -84,15 +78,6 @@ CREATE TABLE `eatery_user_data` (
   `count_lg` int(100) DEFAULT '0',
   `names_lg` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `eatery_user_data`
---
-
-INSERT INTO `eatery_user_data` (`id`, `user_id`, `count`, `count_lg`, `names_lg`) VALUES
-(1, 1, 0, 0, NULL);
-
--- --------------------------------------------------------
 
 --
 -- Структура таблицы `medic`
@@ -111,13 +96,6 @@ CREATE TABLE `medic` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `medic`
---
-
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `medic_user_data`
 --
 
@@ -128,15 +106,6 @@ CREATE TABLE `medic_user_data` (
   `number_of_patients` int(100) DEFAULT '0',
   `patients_primary` int(100) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `medic_user_data`
---
-
-INSERT INTO `medic_user_data` (`id`, `user_id`, `count`, `number_of_patients`, `patients_primary`) VALUES
-(1, 1, 0, 0, 0);
-
--- --------------------------------------------------------
 
 --
 -- Структура таблицы `missing`
@@ -155,8 +124,6 @@ CREATE TABLE `missing` (
   `time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
 -- Структура таблицы `roles`
 --
@@ -173,10 +140,6 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `user_id`, `role`) VALUES
 (1, 1, 'admin');
-
---
--- Индексы сохранённых таблиц
---
 
 --
 -- Индексы таблицы `auth`
@@ -228,7 +191,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT для таблицы `eatery`
@@ -240,7 +203,7 @@ ALTER TABLE `eatery`
 -- AUTO_INCREMENT для таблицы `eatery_user_data`
 --
 ALTER TABLE `eatery_user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT для таблицы `medic`
@@ -252,7 +215,7 @@ ALTER TABLE `medic`
 -- AUTO_INCREMENT для таблицы `medic_user_data`
 --
 ALTER TABLE `medic_user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT для таблицы `missing`
@@ -264,7 +227,7 @@ ALTER TABLE `missing`
 -- AUTO_INCREMENT для таблицы `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

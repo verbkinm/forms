@@ -22,11 +22,17 @@
 	$class 		= $_POST['class'];
 	$class_name = $_POST['class_name'];
 	$user_name 	= $_POST['user_name'];
-	$role 		= $_POST['role'];
+	$roles   	= $_POST['array_roles'];
+	
 	
 echo"	
 	<div class='content'>
-		<h3>Изменить данные пользователя</h3>
+		<h3>Изменить данные пользователя</h3>";
+		
+		foreach($roles as $item)
+			echo "$item";
+		
+		echo"
 		<form action='edit_user_get.php' method='post'>
 			<input name='hide' value='edit' hidden>
 			<table class='table_set_data'>
@@ -52,7 +58,7 @@ echo"
 						Логин:
 					</td>
 					<td>
-						<input name='login' required type='text' value='".$login."'>
+						<input name='login' required type='text' value='".$login."' readonly disable>
 					</td>
 				</tr>
 				<tr>
@@ -91,6 +97,9 @@ echo"
 		</form>
 	</div>
 ";
+
+	
+
 	
 	$mysqli->close();
 ?>

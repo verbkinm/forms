@@ -175,7 +175,7 @@ header{
 	right: 0px;
 	height: 50px;
 	width: 100%;
-	min-width: 800px;
+    min-width: 1045px;
 	background-repeat: no-repeat;
 	background-size: contain;
 	background:  linear-gradient(#17aaff, #a6f6ff);
@@ -230,12 +230,6 @@ footer {
 	font-size: 10px;
 } */
 /* блок основного содержания */
-.content{
-  margin: 20px auto;
-  margin-top: 100px;
-  height: 55px;
-  width: 100%;
-}
 
 
 
@@ -244,12 +238,11 @@ footer {
 	text-align: center;
 	position: fixed;
 	width: 100%;
-	min-width: 1045px;
 	height: 40px;
 	background-color: #666;
 	left: 0;
 	top: 50px;
-	
+    min-width: 1045px;	
 }
 .ul_menu{
 	margin: 0;
@@ -350,3 +343,13 @@ margin: 0;
 .interval_end{
 	text-align: right;
 }
+
+
+.content{
+  margin: 20px auto;
+  margin-top: 100px;
+  height: 55px;
+  width: 100%;
+  min-width: 1045px;
+}
+

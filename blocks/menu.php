@@ -30,6 +30,7 @@ echo "
 							<ul>
 								<li><a href='http://".$_SERVER['SERVER_NAME']."/admin/list.php'>Список пользователей</a></li>
 								<li><a href='http://".$_SERVER['SERVER_NAME']."/admin/registration_form.php'>Добавить пользователя</a></li>
+								<li><a href='http://".$_SERVER['SERVER_NAME']."/servers/mac.php'>Таблица MAC адресов</a></li>
 								<li><a href='#'>...</a></li>
 							</ul>
 						</li>

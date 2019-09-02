@@ -49,8 +49,12 @@
 					$user_id = $mysqli->query("SELECT * FROM auth WHERE login = '$login'")->fetch_object()->id;
 					$sql2 = "SELECT * FROM roles WHERE user_id = '$user_id' ";	
 					$result2 = check_error_db($mysqli, $sql2);
+					$array_roles = array();
 					while ($request2 = $result2->fetch_assoc()) 
+					{
 						echo $request2['role']."<br>";				
+						array_push($array_roles, $request2['role']);
+					}
 				echo"
 				</td>";
 				if( ($request['class'] == 0) && ($request['class_name'] == 0) ) {
@@ -75,8 +79,10 @@
 						<input name='class' 			value='".$request['class']."' hidden>
 						<input name='class_name' 	value='".$request['class_name']."' hidden>
 						<input name='login' 			value='".$request['login']."' hidden>
-						<input name='user_name' 	value='".$request['user_name']."' hidden>
-						<input name='role' 			value='".$request['role']."' hidden>
+						<input name='user_name' 	value='".$request['user_name']."' hidden>";
+						foreach($array_roles as $item)  
+							  echo "<input type=hidden name=array_roles[] value=$item>"; 
+					echo"
 						<input type='submit' value='' class='form_edit_button'>
 					</form>
 					<form action='delete_user_get.php' method='post'>

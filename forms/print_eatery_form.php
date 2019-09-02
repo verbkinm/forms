@@ -128,7 +128,7 @@ echo "
 	
 	$mysqli->close();
 
-	include ("../blocks/footer.php");
+	//include ("../blocks/footer.php");
 ?>
  </body>
 </html>

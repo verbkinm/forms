@@ -623,7 +623,9 @@ function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link
 	{
 		if(!isset($this->CurrentFont))
 			$this->Error('No font has been set');
-                $txt = iconv('utf-8', 'cp1251', $txt);
+			
+		//$txt = mb_convert_encoding($txt, 'cp1251', 'utf-8');
+        $txt = iconv('utf-8', 'cp1251', $txt);
 		if($align=='R')
 			$dx = $w-$this->cMargin-$this->GetStringWidth($txt);
 		elseif($align=='C')
