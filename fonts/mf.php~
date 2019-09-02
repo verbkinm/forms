@@ -1,0 +1,4 @@
+<?php
+	require('../lib/fpdf/makefont/makefont.php');
+	MakeFont('/usr/local/share/fonts/dejavu/DejaVuSans.ttf','ISO-8859-7'); 
+?>

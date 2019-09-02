@@ -1,0 +1,12 @@
+/* простой вид таблиц мониторинга для печати*/
+.table_monitor {
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-size: 14px;
+	font-family: Arial;
+	text-align: center;
+}
+.table_monitor tr td {
+	border: 1px solid black;
+	padding: 3px;
+}

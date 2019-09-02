@@ -1,0 +1,74 @@
+.table_appeals {
+    width: 100%; /* Ширина таблицы */
+    border: 2px solid black; /* Рамка вокруг таблицы */
+    box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em black;
+    border-collapse: collapse; /* Отображать только одинарные линии */
+    padding: 20px; /* Поля вокруг текста */
+    margin: auto;
+}
+.table_appeals caption{
+	font-weight: bolder;
+	padding: 2px;
+	font-size: 18px;
+	text-shadow:  1px 1px 1px white;
+}
+.block_answer{
+	border: 1px solid black;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em black;
+	min-height: 100px;
+	max-height: 500px;
+	width: 99%;
+	overflow: auto;
+	margin: 10px auto;
+	padding: 5px;
+}
+.one_answer{
+/*	border: 1px solid black;*/
+	white-space:nowrap;
+}
+.right_block_answer {
+	text-align: left;
+	border: 1px solid black;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em black;
+	height: 150px;
+	width: 80%;
+	overflow: auto;
+	margin: 10px auto;
+	display: inline-block;
+	padding: 5px;
+}
+.left_block_answer{
+	border: 1px solid black;
+	border-radius: 5px; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 17%;
+	height: 150px;
+	display: inline-block;
+	margin: 10px auto;
+	padding: 5px;
+	text-align: left;
+	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em black;
+}
+.answer{
+	border: 1px solid black;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em black;
+	width: 98%;
+	height: 200px;
+	margin: 10px auto;
+	padding: 5px;
+}
+.answer_form{
+	border: 1px solid white;
+	text-align: center;
+	width: 99%;
+	border-radius: 15px;
+	box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em black;
+	padding: 5px;
+}
