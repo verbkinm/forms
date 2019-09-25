@@ -114,5 +114,8 @@ function historyIpCount($ip)
 }
 ?>		
 		</div>	
+<?php
+	include("../blocks/footer.php");
+?>
 	 </body>
 </html>

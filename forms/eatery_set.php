@@ -33,7 +33,7 @@
 	$result_eatery_user_data = check_error_db($mysqli, $sql_eatery_user_data);
 	$result = mysqli_fetch_array($result_eatery_user_data);
 	
-	$count  		= $result['count'];
+	$count  	= $result['count'];
 	$count_lg  	= $result['count_lg'];
 	$names_lg	= $result['names_lg'];
 
@@ -133,6 +133,8 @@ echo "
 </div>
   ";
 	$mysqli->close();
+	
+	include("../blocks/footer.php");
 ?>	
  </body>
 </html>

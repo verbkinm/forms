@@ -18,5 +18,8 @@
 		<div class="content">	
 		
 		</div>	
+<?php
+	include("blocks/footer.php");
+?>
 	 </body>
 </html>

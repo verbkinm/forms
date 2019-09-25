@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/print_and_date.css">
-  	<link rel="stylesheet" href="../css/sort_table.css">
-	<script type='text/javascript' src='../js/sort_table.js'></script>
+  <link rel="stylesheet" href="../css/sort_table.css">
+  <script type='text/javascript' src='../js/sort_table.js'></script>
   <meta http-equiv="Refresh" content="15" />
   
   <title>Монитор - столовая</title>
@@ -126,5 +126,8 @@ $mysqli->close();
 ?>
 	</table>
 	</div>
+	<?php
+		include("../blocks/footer.php");
+	?>
  </body>
 </html>

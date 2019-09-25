@@ -19,6 +19,7 @@
 	check_permission(array('admin', 'user')); 
 
 	$login = $_SESSION['login'];
+	$role  = $_SESSION['role'];
 	
 	$sql_auth = "SELECT * FROM auth WHERE login = '$login'";	
 	$result_auth = check_error_db($mysqli, $sql_auth);
@@ -33,13 +34,13 @@
 	$result_eatery_user_data = check_error_db($mysqli, $sql_eatery_user_data);
 	$result = mysqli_fetch_array($result_eatery_user_data);
 	
-	$count  		= $result['count'];
+	$count  	= $result['count'];
 	$count_lg  	= $result['count_lg'];
 	$names_lg	= $result['names_lg'];
 
-	if($_SESSION['role'] != "admin") {
-		$disabled = "disabled";
-	}	
+	$disabled = "";
+	if( !inRoles("admin") )
+		$disabled = "disable";
 	
 	$date = date('Y-m-d');
 	$current_time = strtotime($date);
@@ -128,7 +129,7 @@ echo "
 	
 	$mysqli->close();
 
-	//include ("../blocks/footer.php");
+	include ("../blocks/footer.php");
 ?>
  </body>
 </html>

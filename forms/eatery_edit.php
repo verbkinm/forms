@@ -92,9 +92,10 @@ echo"
 			</table>
 		</form>
 	</div>
-";
-	
+";	
 	$mysqli->close();
+
+	include("../blocks/footer.php");
 ?>
  </body>
 </html>

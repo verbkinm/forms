@@ -14,6 +14,7 @@
 echo"
 <!-- <script type='text/javascript' src='../snow-fall.js'></script> -->
    <header>
+   <img class='logo' src='/img/logo.png'>
    	<div class='header_text'>
    		<a href='http://".$_SERVER['SERVER_NAME']."'>Система \"O<sub>3</sub>\" </a>
    	</div>
