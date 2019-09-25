@@ -33,11 +33,7 @@
 	$result_eatery_user_data = check_error_db($mysqli, $sql_eatery_user_data);
 	$result = mysqli_fetch_array($result_eatery_user_data);
 	
-<<<<<<< HEAD
 	$count  	= $result['count'];
-=======
-	$count  		= $result['count'];
->>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 	$count_lg  	= $result['count_lg'];
 	$names_lg	= $result['names_lg'];
 

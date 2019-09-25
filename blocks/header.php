@@ -14,10 +14,7 @@
 echo"
 <!-- <script type='text/javascript' src='../snow-fall.js'></script> -->
    <header>
-<<<<<<< HEAD
    <img class='logo' src='/img/logo.png'>
-=======
->>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
    	<div class='header_text'>
    		<a href='http://".$_SERVER['SERVER_NAME']."'>Система \"O<sub>3</sub>\" </a>
    	</div>

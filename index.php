@@ -1,9 +1,5 @@
 ﻿<!DOCTYPE HTML>
-<<<<<<< HEAD
 <html  lang="ru">
-=======
-<html>
->>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 	<head>
 		<meta charset="utf-8">
 	   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
@@ -31,12 +27,9 @@
 				<a href="monitors/monitor_medic.php" class="button">Просмотр данных</a>
 			</div>	
 		</div>	
-<<<<<<< HEAD
 		<?php
 			include("blocks/footer.php");
 		?>
-=======
->>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 	 </body>
 </html>
 
