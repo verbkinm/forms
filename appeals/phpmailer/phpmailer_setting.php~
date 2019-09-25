@@ -1,9 +1,17 @@
 <?php
+<<<<<<< HEAD
 // Файлы phpmailer
 	require 'class.phpmailer.php';
 	require 'class.smtp.php';
 	
 
+=======
+// Файлы phpmailer
+	require 'class.phpmailer.php';
+	require 'class.smtp.php';
+	
+
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 	
 	function sendMail($email, $author_id, $surname, $name, $patronymic, $url, $author) {
 						обращения.лицейюгорск.рф
@@ -17,12 +25,21 @@
 		$phpmail->Password = 'Litseist2015'; // Ваш пароль
 		$phpmail->SMTPSecure = 'ssl';                            
 		$phpmail->Port = 465;
+<<<<<<< HEAD
 		$phpmail->setFrom('litsey.yugorsk@mail.ru'); // Ваш Email
 		$phpmail->addAddress($email); // Email получателя
 	// Письмо
 		$phpmail->isHTML(true); 
 		$phpmail->Subject = "Лицей им. Г.Ф. Атякшева. Обращение №".$author_id; // Заголовок письма
 		if($author) {
+=======
+		$phpmail->setFrom('litsey.yugorsk@mail.ru'); // Ваш Email
+		$phpmail->addAddress($email); // Email получателя
+	// Письмо
+		$phpmail->isHTML(true); 
+		$phpmail->Subject = "Лицей им. Г.Ф. Атякшева. Обращение №".$author_id; // Заголовок письма
+		if($author) {
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 		$phpmail->Body    = "
 			Уважаемый(ая), ".$surname." ".$name." ".$patronymic.",
 			Вы получили это письмо, так как указали этот адрес при отправке обращения в Лицей им.Г.Ф. Атякшева.
@@ -35,8 +52,16 @@
 			Вы получили это письмо, так как вас указали в качестве соавтора при отправке обращения в Лицей им.Г.Ф. Атякшева.
 			Чтобы проверить статус обращения перейдите по 
 			<a href='http://".$SERVER_NAME."/view.php?url=".$url."'>ссылке</a>" ; // Текст письма
+<<<<<<< HEAD
 		}
 	// Отправка без проверки
 		$phpmail->send();
 	}
 ?>
+=======
+		}
+	// Отправка без проверки
+		$phpmail->send();
+	}
+?>
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4

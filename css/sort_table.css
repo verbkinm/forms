@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 thead tr td:hover{
 	text-decoration: underline;
 	cursor: pointer;
@@ -19,4 +20,27 @@ td.sorted[data-order="-1"]::after {
 
 td.sorted[data-order="1"]::after {
 	content: "▲";
+=======
+thead tr td:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+td.sorted[data-order="1"],
+td.sorted[data-order="-1"] {
+	position: relative
+}
+
+td.sorted[data-order="1"]::after,
+td.sorted[data-order="-1"]::after {
+	position: absolute;
+}
+
+td.sorted[data-order="-1"]::after {
+	content: "▼";
+}
+
+td.sorted[data-order="1"]::after {
+	content: "▲";
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 }

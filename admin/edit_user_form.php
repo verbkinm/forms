@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -100,7 +101,6 @@ echo"
 	$mysqli->close();
 
 	include("../blocks/footer.php");
-
 ?>
  </body>
 </html>

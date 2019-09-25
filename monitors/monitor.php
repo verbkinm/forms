@@ -5,8 +5,13 @@
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/print_and_date.css">
+<<<<<<< HEAD
   <link rel="stylesheet" href="../css/sort_table.css">
   <script type='text/javascript' src='../js/sort_table.js'></script>
+=======
+  	<link rel="stylesheet" href="../css/sort_table.css">
+	<script type='text/javascript' src='../js/sort_table.js'></script>
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
   <meta http-equiv="Refresh" content="15" />
   
   <title>Монитор - столовая</title>

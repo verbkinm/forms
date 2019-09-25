@@ -19,7 +19,6 @@
 	check_permission(array('admin', 'user')); 
 
 	$login = $_SESSION['login'];
-	$role  = $_SESSION['role'];
 	
 	$sql_auth = "SELECT * FROM auth WHERE login = '$login'";	
 	$result_auth = check_error_db($mysqli, $sql_auth);

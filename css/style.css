@@ -14,7 +14,10 @@ body{
 	font-family: Arial;
 	background-color: #bfbfbf;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_report{
 	text-align: center;
 }
@@ -213,9 +216,15 @@ header a{
 	padding-left:10px;
 }
 
+<<<<<<< HEAD
 /* FOOTER  */
 footer {
 	position: fixed ;
+=======
+/* FOOTER 
+footer {
+	position: fixed;
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
@@ -229,7 +238,11 @@ footer {
 	line-height:30px;
 	white-space: nowrap;
 	font-size: 10px;
+<<<<<<< HEAD
 } 
+=======
+} */
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 /* блок основного содержания */
 
 
@@ -349,13 +362,20 @@ margin: 0;
 .content{
   margin: 20px auto;
   margin-top: 100px;
+<<<<<<< HEAD
   margin-bottom: 35px;
+=======
+  height: 55px;
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
   width: 100%;
   min-width: 1045px;
 }
 
+<<<<<<< HEAD
 .logo{
 	margin-left: 5%;
 	width: 50px;
 	position: absolute;
 }
+=======
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4

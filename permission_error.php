@@ -19,8 +19,11 @@
 		<div class="content">	
 			<h3>Не достаточно прав для просмотра данной страницы!</h3>
 		</div>	
+<<<<<<< HEAD
 		<?php
 			include("blocks/footer.php");
 		?>
+=======
+>>>>>>> 96fbb39bab25e3cde3e5123e76034f31567814a4
 	 </body>
 </html>

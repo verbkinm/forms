@@ -97,6 +97,7 @@
 			</table>
 		</div>	
 		<?php
+
 			include ("../blocks/footer.php");
 		?>	
 	 </body>
