@@ -6,10 +6,10 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/print_and_date.css">
   <link rel="stylesheet" href="../css/sort_table.css">
-  <script type='text/javascript' src='../js/sort_table.js'></script>
+
   <meta http-equiv="Refresh" content="15" />
   
-  <title>Монитор - столовая</title>
+  <title>Монитор - пропуски</title>
  </head>
  <body class="monitor">
  <?php
@@ -21,25 +21,23 @@
 	require_once("../blocks/header.php");
 	require_once("../blocks/menu.php");
 	
-	check_permission(array('admin', 'user', 'monitor', 'monitor_eatery')); 
+	check_permission(array('admin', 'user', 'monitor', 'monitor_passes')); 
 	
 	require_once("lib_monitors.php");
 	
  	if(empty($_GET['date'])) {$date = date("Y-m-d");}
- 	else {$date=$_GET['date'];}
-
+    else {$date=$_GET['date'];}
+	
  	echo "
  	<div class='content'>	
  		<div class='print_and_date'>
 	  		<div id='monitor_print'>
-		  		<a href='../reports/report_monitor.php?monitor=eatery&date=".$date."' class='' target='_blank'>Печать</a>
+		  		<a href='../reports/report_monitor.php?monitor=passes&date=".$date."' class='' target='_blank'>Печать</a>
 		  	</div>";
-	insert_date_form();	
-	
-	echo"
-	</div>";
-	
-	require_once("eatery_table.php");
+		insert_date_form();
+		echo"
+		</div>";
+	require_once("passes_table.php");	
 	create_table($NOT_FOR_PRINT);
 	
 	echo"

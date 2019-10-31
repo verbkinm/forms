@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
@@ -15,14 +15,36 @@
 	include("../lib/lib_auth.php");
 	include ("../blocks/header.php");
 	include ("../blocks/menu.php");
-	
+		
 	check_permission(array('admin', 'user')); 
 	
-	$_SESSION['ticket'] = "missing";
+	$login = $_SESSION['login'];
+	
+	$sql_auth = "SELECT * FROM auth WHERE login = '$login'";	
+	$result_auth = check_error_db($mysqli, $sql_auth);
+	$result = mysqli_fetch_array($result_auth);
+	
+	$user_id 	= $result['id'];
+	$user_name	= $result['user_name'];
+	$class 		= $result['class'];
+	$class_name	= $result['class_name'];
+	
+	$sql_eatery_user_data = "SELECT * FROM eatery_user_data WHERE user_id = '$user_id'";
+	$result_eatery_user_data = check_error_db($mysqli, $sql_eatery_user_data);
+    $result = mysqli_fetch_array($result_eatery_user_data);
+	
+	$count  	= $result['count'];
+	$count_lg  	= $result['count_lg'];
+	$names_lg	= $result['names_lg'];
+	
+	$disabled = "";
+	if( !inRoles("admin") ) 
+		$disabled = "disabled";
 
 echo "
 	<div class='content'>	
-		<h3>Отсутствующие</h3>
+        <h3>Отсутствующие</h3>
+    	<div class='message_incorrect'>Внимание! <br> Данные можно подавать один раз в неделю! <br> <br></div>
 		<form action='get.php' method='post'>
 			<input name='hide' value='missing' hidden>
 			<table class='table_set_data'>
@@ -31,79 +53,131 @@ echo "
 						Класс
 					</td>
 					<td>
-						<select size='1' required name='class' >
-							<option disabled>Выберите класс</option>
-							<option value='1'>1</option>
-							<option value='2'>2</option>
-							<option value='3'>3</option>
-							<option value='4'>4</option>
-							<option value='5'>5</option>
-							<option value='6'>6</option>
-							<option value='7'>7</option>
-							<option value='8'>8</option>
-							<option value='9'>9</option>
-							<option value='10'>10</option>
-							<option value='11'>11</option>
+						";
+						if($disabled == "disabled") 
+						{
+							echo"
+								<input hidden name='class' value='".$class."'>
+							";
+						}
+						echo"
+						<select size='1' required name='class' ".$disabled.">
+							<option disabled>Выберите класс</option>";
+							include("../blocks/select_class.php");
+						echo"
 						</select>
-						<select size='1' required name='class_name' >
-							<option disabled>Выберите класс</option>
-							<option value='А'>А</option>
-							<option value='Б'>Б</option>
-							<option value='В'>В</option>
-							<option value='Г'>Г</option>
+						";
+						if($disabled == "disabled") {
+							echo"
+								<input hidden name='class_name' value='".$class_name."'>
+							";
+						}
+						echo"
+						<select size='1' required name='class_name' ".$disabled.">
+							<option disabled>Выберите класс</option>";
+							include("../blocks/select_class_name.php");
+						echo"
 						</select>
 					</td>
 				</tr>
+				
+				<tr>
+					<td colspan='2'>
+						<hr>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan='2'>
+						<table class='table_passes'>
+					
+							<thead>
+								<td style='width:20px;'>
+									№
+								</td>
+								<td style='width:200px;'>
+									Ф.И.О. ученика
+								</td>
+								<td>
+									По болезни
+								</td>
+								<td>
+									По уважительной причине
+								</td>
+								<td>
+									По неуважительной причине
+								</td>
+								<td>
+									Всего
+								</td>
+								<td style='width:40px;'>
+								</td>
+                            </thead>
+
+                            <tr id='no_missing'>
+                                <td colspan='7'>Отсутствующих нет!</td>
+                            </tr>    
+							
+							<tr>
+								<td colspan='7' class='add_unit' style='text-align: left;'>
+									<input id='add_button' type='button' onclick='add();'>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
 				<tr>
 					<td>
-						Количество обучающихся:
+						Итого:
 					</td>
 					<td>
-						<input name='count' required type='number' min='0' max='100' value='0'>
+						<input id='total' type='number' min='0' max='1000' name='pass_count' value='0' readonly required>
 					</td>
 				</tr>
 				<tr>
-					<td>
-						Отсутствуют по болезни<br>(Ф.И. об-ся, кол-во часов):
-					</td>
-					<td>
-						<textarea name='number_of_patients'></textarea>
+					<td colspan='2'>
+						<hr>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						По неуважительной причине<br>(Ф.И. об-ся, кол-во часов):
-					</td>
-					<td>
-						<textarea name='not_a_good_reason'></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Принятые меры (если имеются обучающиеся по неуважительной причине):
-					</td>
-					<td>
-						<textarea name='accepted_measure'></textarea>
-					</td>
-				</tr>
+				
 				<tr>
 					<td>
 						Классный руководитель:
 					</td>
-				<td>
-					<input name='user_name' required type='text'>
-				</td>
+					<td>
+						";
+						if($disabled == "disabled") {
+							echo"
+								<input hidden name='user_name' value='".$user_name."'>
+							";
+						}
+						echo"
+						<select name='user_name' size='1' required id='select_user' ".$disabled.">
+							<option disabled>Выберите пользователя</option>";
+							include("../blocks/users_list.php");
+							echo"
+						</select>
+					</td>
 				</tr>
 				<tr>
-					<td colspan='2' >
-						<br><input type='submit' value='Отправить' class='button_set'>
-					</td>
+                <td colspan='2' >";
+                    $disabled_submit = "";
+					if( (($class == "0") || ($class_name == "0")) && !inRoles("admin") ) {$disabled_submit="disabled";}
+					echo"
+					<br><input type='submit' value='Отправить' class='button_set'".$disabled_submit.">
+				</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 ";
-	$mysqli->close();
+    $mysqli->close();
+
+	include("../blocks/footer.php");
 ?>
  </body>
+	<script type="text/javascript" src="../js/passes/passes.js">	
+		table_row_numbers();
+	</script>
 </html>

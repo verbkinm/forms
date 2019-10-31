@@ -28,12 +28,7 @@
 	
 echo"	
 	<div class='content'>
-		<h3>Изменить данные пользователя</h3>";
-		
-		foreach($roles as $item)
-			echo "$item";
-		
-		echo"
+		<h3>Изменить данные пользователя</h3>
 		<form action='edit_user_get.php' method='post'>
 			<input name='hide' value='edit' hidden>
 			<table class='table_set_data'>
@@ -59,7 +54,7 @@ echo"
 						Логин:
 					</td>
 					<td>
-						<input name='login' required type='text' value='".$login."' readonly disable>
+						<input name='login' required type='text' value='$login' readonly disable>
 					</td>
 				</tr>
 				<tr>
@@ -72,10 +67,10 @@ echo"
 				</tr>
 				<tr>
 					<td>
-						Классный руководитель:
+						Имя пользователя:
 					</td>
 					<td>
-						<input name='user_name' required type='text' value='".$user_name."'>
+						<input name='user_name' required type='text' value='$user_name'>
 					</td>
 				</tr>
 				<tr>

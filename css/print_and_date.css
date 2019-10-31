@@ -8,6 +8,7 @@
 .print_and_date {
 	text-align: center;	
 }
+/* Таблица для печати - ссылка*/
 #monitor_print{
 	text-align: left;
 }
@@ -28,11 +29,14 @@
 #monitor_print a:visited{
 	color: #000;
 }
+
+
 #monitor_form{
 	text-align: right;
 	color: #000;
 	text-shadow: 0 0 5px white;
 }
+
 .print_and_date form .date{
 	display: inline;
 	margin: 0px 0px;
@@ -50,6 +54,5 @@
 	padding: 0;
 	width: 100px;
 	height: 25px;	
-	box-shadow:  1px 1px 2px 1px black; 
-	
+	box-shadow:  1px 1px 2px 1px black; 	
 }

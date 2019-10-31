@@ -11,23 +11,27 @@
 <?php
 	session_start();
 
-	include("../lib/connect.php");
-	include("../lib/lib_auth.php");
-	include ("../blocks/header.php");
-	include ("../blocks/menu.php");
+	require_once("../lib/connect.php");
+	require_once("../lib/lib_auth.php");
+	require_once ("../blocks/header.php");
+	require_once ("../blocks/menu.php");
 	
 	check_permission(array('admin', 'editor')); 
 
-	$id 		= $_POST['id'];
+	$id = -1;
+	if(isset($_POST['id']))
+		$id = $_POST['id'];
+	else
+		header("Location: http://".$_SERVER['SERVER_NAME']."/permission_error.php"); 
 	
 	
-	$sql = "SELECT * FROM eatery WHERE id = '$id' ";	
+	$sql = "SELECT * FROM eatery WHERE id = $id ";	
 	$result = check_error_db($mysqli, $sql);
 	$request = mysqli_fetch_array($result);	
 	
 echo"	
 	<div class='content'>
-		<h3>Изменить данные заявки №".$request['id']."</h3>
+		<h3>Изменение данных заявки №".$request['id']."</h3>
 		<form action='get.php' method='post'>
 		<input name='hide' value='eatery_edit' hidden>
 		<input name='id' value='".$request['id']."' hidden>
@@ -47,43 +51,44 @@ echo"
 					echo"
 					</select>
 					</td>
-			<tr>
-				<td>
-					Количество детей:
-				</td>
-				<td>
-					<input name='count' required type='number' min='0' max='100' value='".$request['count']."'> 
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Из них - льготников:
-				</td>
-				<td>
-					<input name='count_lg' required type='number' min='0' max='100' value='".$request['count_lg']."'>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Ф.И. льготников:
-				</td>
-				<td>
-					<textarea name='names_lg'>".$request['names_lg']."</textarea>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Классный руководитель:
-				</td>
-				<td>
-					";
-					echo"
-					<select name='user_name' size='1' required id='select_user' disabled>
-						<option selected>".$request['user_name']."</option>";
+				</tr>
+				<tr>
+					<td>
+						Количество детей:
+					</td>
+					<td>
+						<input name='count' required type='number' min='0' max='100' value='".$request['count']."'> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Из них - льготников:
+					</td>
+					<td>
+						<input name='count_lg' required type='number' min='0' max='100' value='".$request['count_lg']."'>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Ф.И. льготников:
+					</td>
+					<td>
+						<textarea name='names_lg'>".$request['names_lg']."</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Классный руководитель:
+					</td>
+					<td>
+						";
 						echo"
-					</select>
-				</td>
-			</tr>
+						<select name='user_name' size='1' required id='select_user' disabled>
+							<option selected>".$request['user_name']."</option>";
+							echo"
+						</select>
+					</td>
+				</tr>
 				<tr>
 					<td colspan='2' style='text-align:center;'>
 						<br><input type='submit' value='Изменить' class='button_set'>
@@ -95,7 +100,7 @@ echo"
 ";	
 	$mysqli->close();
 
-	include("../blocks/footer.php");
+	require_once("../blocks/footer.php");
 ?>
  </body>
 </html>

@@ -4,7 +4,7 @@
 	
 	foreach($array as $item)
 	{
-		if($item == $class_name)
+		if(isset($class_name) && $item == $class_name)
 			$selected = "selected";
 		if($item == "Нет")
 		{

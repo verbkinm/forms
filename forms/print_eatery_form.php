@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
@@ -39,7 +39,7 @@
 
 	$disabled = "";
 	if( !inRoles("admin") )
-		$disabled = "disable";
+		$disabled = "disabled";
 	
 	$date = date('Y-m-d');
 	$current_time = strtotime($date);
@@ -58,7 +58,8 @@ echo "
 				</td>
 				<td>
 					";
-					if($disabled == "disabled") {
+					if($disabled == "disabled") 
+					{
 						echo"
 							<input hidden name='class' value='".$class."'>
 						";
@@ -83,6 +84,11 @@ echo "
 					</select>
 				</td>
 			<tr>
+				<td colspan='2'>
+					<hr>
+				</td>
+			</tr>
+			<tr>
 				<td>
 					Интервал:
 				</td>
@@ -97,6 +103,13 @@ echo "
 					</div>
 				</td>
 			</tr>
+			
+			<tr>
+				<td colspan='2'>
+					<hr>
+				</td>
+			</tr>
+			
 			</tr>
 				<td>
 					Классный руководитель:

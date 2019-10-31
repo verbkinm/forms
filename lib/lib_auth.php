@@ -14,7 +14,8 @@
    else 
    	return false; //Пользователь не авторизован, т.к. переменная is_auth не создана
    }
-function auth($login, $password, $mysqli) {
+function auth($login, $password, $mysqli)
+{
 	if (!password_verify($password, $mysqli->query("SELECT password FROM auth WHERE login = '$login'")->fetch_object()->password)) {
 		$_SESSION["is_auth"] = false;
 		return false; 
@@ -42,24 +43,30 @@ function auth($login, $password, $mysqli) {
 		return true;
   	}
  }
-function getLogin() {
+function getLogin() 
+{
 	if (isAuth()) { //Если пользователь авторизован
 		return $_SESSION["login"]; //Возвращаем логин, который записан в сессию
   	}
 }
-function out() {
+function out() 
+{
 	$_SESSION = array(); //Очищаем сессию
   	session_destroy(); //Уничтожаем
 }
 function inRoles($str_role)
 {
+    if(!isset($_SESSION['roles']))
+        return false;
+
 	foreach($_SESSION['roles'] as $role){
 		if(strcmp($str_role, $role) == 0)
 			return true;
 	}
 	return false;
 }
-function check_permission($users) {
+function check_permission($users) 
+{
   foreach($users as $user)
   {
 		if(inRoles($user) ) {

@@ -20,8 +20,6 @@
 		
 		check_permission(array('admin', 'appeals')); 
 		
-		$sql = "SELECT * FROM auth WHERE id = '$id'";
-		
 // не подключаю из файла lib/connect.php т.к. идёт дублирование переменных и фунций
 		$mysqli = new mysqli('localhost', 'appeals', 'M4UC0wxkmEgpXZ5R', 'appeals'); 
 		/* изменение набора символов на utf8 */

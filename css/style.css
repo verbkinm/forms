@@ -1,10 +1,8 @@
 /* убираем рамки при фокусе*/
-button::-moz-focus-inner,
 input[type="reset"]::-moz-focus-inner,
-input[type="button"]::-moz-focus-inner,
+
 input[type="submit"]::-moz-focus-inner,
-input[type="submit"]::-moz-focus-inner,
-input[type="file"] > input[type="button"]::-moz-focus-inner {/* */
+{/* */
 	border: none;
 }
 
@@ -82,6 +80,9 @@ body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_re
 	height: 100px;
 	box-shadow:  3px 3px 5px 1px black; 
 }
+.table_set_data span{
+	width: 50px;
+}
 .table_set_data select{
 	height: 35px;
 	width: 157px;
@@ -105,6 +106,60 @@ body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_re
 .table_set_data td{
 	width: 200px;
 	text-align: left;
+}
+.passed{
+	
+}
+.passed input:first-child{
+	width: 70%;
+}
+.passed input:nth-child(2){
+	width: 18%;
+}
+
+/* Кнопки добавить и удалить строку элементов*/
+.table_set_data .remove_unit input, .table_set_data .add_unit input{
+	width: 30px;
+}
+.table_set_data .remove_unit input:first-child, .table_set_data .add_unit input:first-child{
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.table_set_data .remove_unit input:first-child{
+	background-image:url(../img/minus.png);
+}
+.table_set_data .add_unit input:first-child{
+	background-image:url(../img/plus.png);
+}
+.table_set_data .remove_unit input:active, .table_set_data .add_unit input:active{
+	box-shadow:  inset 1px 1px 5px 1px black,
+				 inset -1px -1px 5px 1px black; 		
+	outline:none !important;			 
+}
+
+/* таблица добавления отсутствующих*/
+.table_passes {
+  table-layout: fixed;
+  width: 100%;
+}
+.table_passes, .table_passes td{
+	border: 3px solid #cecece;
+	border-collapse: collapse; 
+}
+.table_passes thead{
+	font-size: 12px;
+}
+.table_passes td{
+	text-align:center;
+	padding: 10px;
+	width: 100px;
+}
+.table_passes input{
+	width: 85%;
+	text-align: center;
+}
+.table_passes .row_with_data_fields{
+	
 }
 
 /*select при регистрации*/
@@ -296,6 +351,7 @@ footer {
 	height: 20px;
 	background-repeat: no-repeat;
 }
+
 .body_list form{
 	width: 30px;
 	display: inline-block;

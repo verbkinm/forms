@@ -8,28 +8,28 @@
 	</head>
 	<body class="body_index">
 	
-		<?php
-			session_start();
-			
-			include("lib/connect.php");
-			include("lib/lib_auth.php");
-			include ("blocks/header.php");
-			include ("blocks/menu.php");
-		?>	
+	<?php
+		session_start();
 		
-		<div class="content">	
-			<div>
-				<a href="forms/eatery_set.php" class="button">Заявки на питание</a>
-				<a href="forms/medic_set.php" class="button">Подача информации о количестве больных</a>
-			</div>
-			<div>
-				<a href="monitors/monitor.php" class="button">Просмотр заявок</a>
-				<a href="monitors/monitor_medic.php" class="button">Просмотр данных</a>
-			</div>	
+		require_once("lib/connect.php");
+		require_once("lib/lib_auth.php");
+		require_once("blocks/header.php");
+		require_once("blocks/menu.php");
+	?>	
+	
+	<div class="content">	
+		<div>
+			<a href="forms/eatery_set.php" class="button">Заявки на питание</a>
+			<a href="forms/medic_set.php" class="button">Подача информации о количестве больных</a>
+		</div>
+		<div>
+			<a href="monitors/monitor.php" class="button">Просмотр заявок</a>
+			<a href="monitors/monitor_medic.php" class="button">Просмотр данных</a>
 		</div>	
-		<?php
-			include("blocks/footer.php");
-		?>
+	</div>	
+	<?php
+		require_once("blocks/footer.php");
+	?>
 	 </body>
 </html>
 

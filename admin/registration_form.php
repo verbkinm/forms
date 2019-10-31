@@ -18,7 +18,9 @@
 	include ("../blocks/header.php");
 	include ("../blocks/menu.php");
 	
-	check_permission(array('admin')); 
+    check_permission(array('admin')); 
+
+    $roles = [];
 
 echo"	
 	<div class='content'>

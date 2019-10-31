@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
@@ -37,9 +37,10 @@
 	$count_lg  	= $result['count_lg'];
 	$names_lg	= $result['names_lg'];
 
-	if( !inRoles("admin") ) {
+    $disabled = "";
+	if( !inRoles("admin") ) 
 		$disabled = "disabled";
-	}	
+
 echo "
 <div class='content'>	
 	<h3>Заявка в столовую</h3>
@@ -53,7 +54,8 @@ echo "
 				</td>
 				<td>
 					";
-					if($disabled == "disabled") {
+					if($disabled == "disabled") 
+					{
 						echo"
 							<input hidden name='class' value='".$class."'>
 						";
@@ -78,6 +80,13 @@ echo "
 					</select>
 				</td>
 			</tr>
+			
+			<tr>
+				<td colspan='2'>
+					<hr>
+				</td>
+			</tr>
+				
 			<tr>
 				<td>
 					Количество детей:
@@ -102,6 +111,13 @@ echo "
 					<textarea name='names_lg'>".$names_lg."</textarea>
 				</td>
 			</tr>
+			
+			<tr>
+				<td colspan='2'>
+					<hr>
+				</td>
+			</tr>
+			
 			<tr>
 				<td>
 					Классный руководитель:
@@ -122,7 +138,8 @@ echo "
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2' >";
+                <td colspan='2' >";
+                    $disabled_submit = "";
 					if( (($class == "0") || ($class_name == "0")) && !inRoles("admin") ) {$disabled_submit="disabled";}
 					echo"
 					<br><input type='submit' value='Отправить' class='button_set'".$disabled_submit.">

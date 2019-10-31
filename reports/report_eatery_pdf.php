@@ -1,19 +1,19 @@
  <?php
 // классные руководители раз в неделю, вместе с табелем питания, должны относить подписанные от руки заявки на питание
 
-	if($_POST['hide'] == "report_eatery_pdf") {
+    if($_POST['hide'] == "report_eatery_pdf") 
+    {
 		include("../lib/connect.php");
 	   define('FPDF_FONTPATH','../fonts/');
 	   require('../lib/fpdf/fpdf.php');
 
 		$width 			= 90;
-		$height 			= 90;
+		$height 		= 90;
 		$line_spacing 	= 5;
-		$row 				= 0;
+		$row 			= 0;
 		$column			= 0;
-		
-		$pdf 				= new FPDF('L','mm','A4');
 
+		$pdf 			= new FPDF('L','mm','A4');
 
 		$pdf->AddPage();
 		$pdf->AddFont('DejaVuSans','','DejaVuSans.php');
@@ -22,8 +22,6 @@
 		$x = 10;
 		$y = 10;
 		$max_y = 0;
-	
-		$user_id = $mysqli->query("SELECT id FROM auth WHERE login = '$login'")->fetch_object()->id;
 
 		$date_begin	= $_POST['date_begin'];
 		$date_end	= $_POST['date_end'];
@@ -36,7 +34,8 @@
 		$endDate = new DateTime($date_end);
 		$period = new DatePeriod($startDate, new \DateInterval('P1D'), $endDate->modify('+1 day'));
 		
-		foreach ($period as $date) {
+        foreach ($period as $date) 
+        {
 			global $x, $y, $max_y, $row, $column;
 			
 			$current_date = $date->format('Y-m-d');
@@ -49,13 +48,18 @@
 			$names_lg	= $request['names_lg'];
 			
 			//new line
-			if ( ($column == 3) && ($row == 0) ) { 
+            if ( ($column == 3) && ($row == 0) )
+            {
 				$column 	= 0; 
 				$row 		= 1; 
 				$y 		= $y + $max_y;
 			}
-			if ( ($column == 3) && ($row == 1) ) {$row++;}
-			if ( ($column == 3) && ($row == 2) ) { 
+            if ( ($column == 3) && ($row == 1) ) 
+            {
+                $row++;
+            }
+            if ( ($column == 3) && ($row == 2) ) 
+            { 
 				$column 	= 0; 
 				$row 		= 0; 
 				$y 		= 10;
@@ -65,14 +69,12 @@
 			}	
 			one_day($pdf, $x+$width*$column++, $y);
 		}
-
-
-
 		$mysqli->close();
 		$pdf->Output('I','report.pdf',true); 
 	}
 	
-	function one_day($pdf, $x, $y) {
+    function one_day($pdf, $x, $y) 
+    {
 		global $max_y, $width, $height, $line_spacing, $current_date, $class, $class_name, $count, $count_lg, $names_lg, $user_name;
 				
 		$pdf->setXY($x, $y);

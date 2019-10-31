@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
@@ -36,6 +36,7 @@
 	$number_of_patients  = $result['number_of_patients'];
 	$patients_primary		= $result['patients_primary'];
 
+    $disabled = "";
 	if( !inRoles("admin") ) {
 		$disabled = "disabled";
 	}
@@ -77,6 +78,13 @@ echo "
 						</select>
 					</td>
 				</tr>
+				
+				<tr>
+					<td colspan='2'>
+						<hr>
+					</td>
+				</tr>
+				
 				<tr>
 					<td>
 						Количество отсутствующих:
@@ -101,6 +109,13 @@ echo "
 						<input name='patients_primary' required type='number' min='0' max='100' value='".$patients_primary."'>
 					</td>
 				</tr>
+				
+				<tr>
+					<td colspan='2'>
+						<hr>
+					</td>
+				</tr>
+				
 				<tr>
 					<td>
 						Классный руководитель:
@@ -120,8 +135,10 @@ echo "
 						</select>
 					</td>
 				</tr>
+								
 				<tr>
-					<td colspan='2' style='text-align:center;'>";
+                    <td colspan='2'>";
+                    $disabled_submit = "";
 					if( (($class == "0") || ($class_name == "0")) && (!inRoles("admin")) ) {$disabled_submit="disabled";}
 					echo"
 						<br><input type='submit' value='Отправить' class='button_set' ".$disabled_submit.">

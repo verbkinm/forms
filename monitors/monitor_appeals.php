@@ -19,7 +19,7 @@
 	include("../blocks/menu.php");
 	include("../appeals/blocks/status.php");
 	
-	check_permission(array('admin', 'appeals'));
+	check_permission(array('admin', 'appeals', 'monitor', 'monitor_appeals'));
 	
 // не подключаю из файла lib/connect.php т.к. идёт дублирование переменных и фунций
 	unset($mysqli);

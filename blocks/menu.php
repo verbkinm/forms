@@ -17,25 +17,32 @@ echo "
 					<li><a href='http://".$_SERVER['SERVER_NAME']."/monitors/monitor_medic.php'>Просмотр заявок</a></li>
 				</ul>
 			</li>
-			<li><a href='#'>Соц. педагог</a></li>
-					<li><a href='#'>Обращения</a>
+			<li><a href='#'>Соц. педагог</a>
+				<ul>
+                    <li><a href='http://".$_SERVER['SERVER_NAME']."/forms/pass_set.php'>Подать заявку</a></li>
+					<li><a href='http://".$_SERVER['SERVER_NAME']."/monitors/monitor_passes.php'>Текущая неделя</a></li>
+					<li><a href='http://".$_SERVER['SERVER_NAME']."/monitors/monitor_passes_period.php'>Выбор периода</a></li>
+				</ul>
+			</li>
+			<li><a href='#'>Обращения</a>
 				<ul>
 					<li><a href='http://обращения.лицейюгорск.рф' target='_blank'>Подать обращение</a></li>
 					<li><a href='http://".$_SERVER['SERVER_NAME']."/monitors/monitor_appeals.php'>Список обращений</a></li>
 				</ul>
 			</li>";
-				if( inRoles("admin") ) {
-					echo"
-						<li><a href='#'>АДМИН.</a>
-							<ul>
-								<li><a href='http://".$_SERVER['SERVER_NAME']."/admin/list.php'>Список пользователей</a></li>
-								<li><a href='http://".$_SERVER['SERVER_NAME']."/admin/registration_form.php'>Добавить пользователя</a></li>
-								<li><a href='http://".$_SERVER['SERVER_NAME']."/servers/mac.php'>Таблица MAC адресов</a></li>
-								<li><a href='#'>...</a></li>
-							</ul>
-						</li>
+			if( inRoles("admin") ) 
+			{
+				echo"
+					<li><a href='#'>АДМИН.</a>
+						<ul>
+							<li><a href='http://".$_SERVER['SERVER_NAME']."/admin/list.php'>Список пользователей</a></li>
+							<li><a href='http://".$_SERVER['SERVER_NAME']."/admin/registration_form.php'>Добавить пользователя</a></li>
+							<li><a href='http://".$_SERVER['SERVER_NAME']."/servers/mac.php'>Таблица MAC адресов</a></li>
+							<li><a href='#'>...</a></li>
+						</ul>
+					</li>
 				";
-				}
+			}
 		echo"		
 		</ul>
 	</div>
