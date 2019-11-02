@@ -131,13 +131,14 @@
 	{	
 		global $date_begin, $date_end;
 		global $class, $class_name;
+		global $mysqli;	
 		
-		if($class == 0)
-			$class = 'class';
-		if($class_name == 0)
-			$class_name = 'class_name';
-		
-		global $mysqli;
+		if($class == '0')
+			$class = 'passes.class';
+		if($class_name == '0')
+			$class_name = 'passes.class_name';
+		else
+			$class_name = "'$class_name'";
 		
 		$period_begin = strtotime($date_begin);
 		$period_end = strtotime($date_end);
@@ -175,13 +176,16 @@
 					FROM 
 					(SELECT passes.id, passes.class, passes.class_name, passes.user_name, passes.week_number, passes.date_time, passes_application.passes_id, passes_application.student_name, passes_application.absence_due_to_illness, passes_application.absence_for_a_good_reason, passes_application.absence_of_a_valid_reason
 							FROM 
-							`passes`, `passes_application` WHERE passes.week_number >= $week_number_of_period_start AND passes.week_number <= $week_number_of_period_end 
-							AND passes.class = $class AND passes.class_name = $class_name  
-							AND passes_application.passes_id = passes.id
+							`passes`, `passes_application` WHERE passes.week_number >= $week_number_of_period_start 
+								AND passes.week_number <= $week_number_of_period_end 
+								AND passes.class = $class 
+								AND passes.class_name = $class_name
+								AND passes_application.passes_id = passes.id
 							ORDER BY passes.class, passes.class_name) 
 				AS result GROUP BY class, class_name, student_name";
+				
 		$result = check_error_db($mysqli, $sql);		
-			
+		
 		$table = array();
 		while ($request = $result->fetch_assoc()) 
 		{
@@ -189,7 +193,6 @@
 			$child_data = array($request['absence_due_to_illness'], $request['absence_for_a_good_reason'], $request['absence_of_a_valid_reason'], $request['user_name'], $request['date_time']);
 			$table[$full_class_name][$request['student_name']] = $child_data;
 		}
-		
 		$counter = 0;
 		foreach($table as $full_class_name => $children)
 		{
@@ -207,7 +210,6 @@
 					echo"
 				</tr>";
 		}
-
 		echo"
 		<thead>
 			<tr>
@@ -223,7 +225,6 @@
 				<td colspan='3'>
 			</tr>
 		</thead>";
-		
 		if($total == 0) 
 		{
 			echo"
@@ -233,7 +234,6 @@
 		}
 		$result->free();
 		$mysqli->close();
-		
 		echo"
 		</table>";
 	}

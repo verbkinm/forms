@@ -17,7 +17,7 @@
 	require_once ("../blocks/header.php");
 	require_once ("../blocks/menu.php");
 	
-	check_permission(array('admin', 'soc-pedagog')); 
+	check_permission(array('admin', 'user', 'soc-pedagog')); 
 
 	$login = $_SESSION['login'];
 	

@@ -1,7 +1,7 @@
  <?php
  	session_start();
 	
-	require_once_once("../lib/lib_auth.php");
+	require_once("../lib/lib_auth.php");
 	check_permission(['admin', 'user']); 
 
     if($_POST['hide'] == "report_eatery_pdf") 
