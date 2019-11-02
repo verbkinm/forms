@@ -21,7 +21,7 @@ echo "
 				<ul>
                     <li><a href='http://".$_SERVER['SERVER_NAME']."/forms/pass_set.php'>Подать заявку</a></li>
 					<li><a href='http://".$_SERVER['SERVER_NAME']."/monitors/monitor_passes.php'>Текущая неделя</a></li>
-					<li><a href='http://".$_SERVER['SERVER_NAME']."/monitors/monitor_passes_period.php'>Выбор периода</a></li>
+					<li><a href='http://".$_SERVER['SERVER_NAME']."/forms/print_passes_period.php'>Выбор периода</a></li>
 				</ul>
 			</li>
 			<li><a href='#'>Обращения</a>

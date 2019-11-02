@@ -37,7 +37,7 @@
 		insert_date_form();
 		echo"
 		</div>";
-	require_once("passes_table.php");	
+	require_once("tables/passes_table.php");	
 	create_table($NOT_FOR_PRINT);
 	
 	echo"

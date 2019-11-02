@@ -21,7 +21,7 @@
 	require_once("../blocks/header.php");
 	require_once("../blocks/menu.php");
 	
-	check_permission(array('admin', 'user', 'monitor', 'monitor_eatery')); 
+	check_permission(['admin', 'user', 'monitor', 'monitor_eatery']); 
 	
 	require_once("lib_monitors.php");
 	
@@ -32,14 +32,14 @@
  	<div class='content'>	
  		<div class='print_and_date'>
 	  		<div id='monitor_print'>
-		  		<a href='../reports/report_monitor.php?monitor=eatery&date=".$date."' class='' target='_blank'>Печать</a>
+		  		<a href='../reports/report_monitor.php?monitor=eatery&date=$date' class='' target='_blank'>Печать</a>
 		  	</div>";
 	insert_date_form();	
 	
 	echo"
 	</div>";
 	
-	require_once("eatery_table.php");
+	require_once("tables/eatery_table.php");
 	create_table($NOT_FOR_PRINT);
 	
 	echo"

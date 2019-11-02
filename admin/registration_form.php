@@ -13,10 +13,11 @@
 <?php
 	session_start();
 
-	include("../lib/connect.php");
-	include("../lib/lib_auth.php");
-	include ("../blocks/header.php");
-	include ("../blocks/menu.php");
+	require_once("../config/config.php");
+	require_once("../lib/connect.php");
+	require_once("../lib/lib_auth.php");
+	require_once ("../blocks/header.php");
+	require_once ("../blocks/menu.php");
 	
     check_permission(array('admin')); 
 
@@ -35,12 +36,12 @@ echo"
 					<td>
 						<select size='1' required name='class' >
 							<option disabled>Выберите класс</option>";
-						include("../blocks/block_number_of_classes.php");
+						require_once("../blocks/block_number_of_classes.php");
 						echo"
 						</select>
 						<select size='1' required name='class_name' >
 							<option disabled>Выберите класс</option>";
-							include("../blocks/block_class_letters.php");
+							require_once("../blocks/block_class_letters.php");
 						echo"
 						</select>
 					</td>
@@ -76,7 +77,7 @@ echo"
 					<td>
 						<select size=5 required name='roles[]' id='select_role' multiple>
 							<option disabled>Выберите роль пользователя</option>";
-							include("roles.php");
+							require_once("../blocks/roles.php");
 						echo "</select>
 					</td>
 				</tr>
@@ -92,7 +93,7 @@ echo"
 	
 	$mysqli->close();
 
-	include("../blocks/footer.php");
+	require_once("../blocks/footer.php");
 
 ?>
  </body>

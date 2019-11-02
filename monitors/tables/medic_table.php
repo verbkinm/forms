@@ -12,13 +12,10 @@
 		echo"
 		<table class='table_monitor'>";
 		if($is_for_print)
-		{
 			echo" <caption>Информация о количестве отсутствующих - данные на $date</caption>";
-		}
 		else
-		{
 			echo" <caption><a href='?date=$yesterday'><< </a>Информация о количестве отсутствующих - данные на $date<a href='?date=$tomorrow'> >></a> </caption>";
-		}
+		
 		echo"
 		<thead>
 			<tr>		
@@ -30,10 +27,7 @@
 				<td>Классный <br>руководитель</td>
 				<td>Время <br>добавления</td>";
 				if(!$is_for_print && (inRoles("admin") || inRoles("editor"))  )
-				{
-					echo"
-					<td>Изменить <br>данные</td>";
-				}
+					echo "<td>Изменить <br>данные</td>";
 			echo "
 			</tr>
 		</thead>";

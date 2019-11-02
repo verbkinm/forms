@@ -17,7 +17,7 @@
 	require_once ("../blocks/header.php");
 	require_once ("../blocks/menu.php");
 	
-	check_permission(['admin', 'user']); 
+	check_permission(array('admin', 'soc-pedagog')); 
 
 	$login = $_SESSION['login'];
 	
@@ -44,43 +44,38 @@
 	
 	$date = date('Y-m-d');
 	$current_time = strtotime($date);
+	
+	$next_week = date('Y-m-d',$current_time + 86400 * 7);
+	$previos_week = date('Y-m-d',$current_time - 86400 * 7);
+		
 	$first_day_in_week = date('Y-m-d',$current_time-(date('N',$current_time) - 1)*86400);
+	$last_day_in_week = date('Y-m-d',$current_time-(date('N',$current_time) - 7)*86400);
 	
 echo "
 <div class='content'>	
-	<h3>Печать заявок в столовую</h3>
-	<form action='../reports/report_eatery_pdf.php' method='post'>
-		<input name='hide' value='report_eatery_pdf' hidden>
-		<table class='table_set_data' class='table_print_eatery_report'>
+	<h3>Выбор периода для отчета</h3>
+	<form action='../reports/report_passes_period.php' method='post'>
+		<table class='table_set_data' >
 			<tr>
 				<td>Класс</td>
 				<td>
-					";
-					if($disabled == "disabled") 
-						echo"<input hidden name='class' value='$class'>";
-					echo"
-					<select size='1' required name='class' $disabled>
-						<option disabled>Выберите класс</option>";
-						require_once("../blocks/select_class.php");
+					<select size='1' required name='class'>
+						<option disabled>Выберите класс</option>
+						<option value='0'>Все</option>";
+						for($i = $_class_numbers[0]; $i <= count($_class_numbers); $i++)
+							echo"<option value='$i'>$i</option>";
 					echo"
 					</select>
-					";
-					if($disabled == "disabled") {
-						echo"
-							<input hidden name='class_name' value='$class_name'>
-						";
-					}
-					echo"
-					<select size='1' required name='class_name' $disabled>
-						<option disabled>Выберите класс</option>";
-						require_once("../blocks/select_class_name.php");
+					<select size='1' required name='class_name'>
+						<option disabled>Выберите класс</option>
+						<option value='0'>Все</option>";
+						foreach($_class_letters as $item)
+							echo"<option value='$item'>$item</option>";
 					echo"
 					</select>
 				</td>
 			<tr>
-				<td colspan='2'>
-					<hr>
-				</td>
+				<td colspan='2'><hr></td>
 			</tr>
 			<tr>
 				<td>Интервал:</td>
@@ -90,7 +85,7 @@ echo "
 							<input type='date' name='date_begin' value='$first_day_in_week' class='date'>
 						</div>
 						<div class='interval_end'>
-							<input type='date' name='date_end' value='$date' class='date'>
+							<input type='date' name='date_end' value='$last_day_in_week' class='date'>
 						</div>
 					</div>
 				</td>
@@ -100,22 +95,10 @@ echo "
 				<td colspan='2'><hr></td>
 			</tr>
 			
-			</tr>
-				<td>Классный руководитель:</td>
-				<td>
-					";
-					if($disabled == "disabled") 
-						echo"<input hidden name='user_name' value='$user_name'>";
-					echo"
-					<select name='user_name' size='1' required id='select_user' $disabled>
-						<option disabled>Выберите пользователя</option>";
-						require_once("../blocks/users_list.php");
-						echo"
-					</select>
-				</td>
-			</tr>
 			<tr>
-				<td colspan='2' ><br><input type='submit' value='Печать' class='button_set'></td>
+				<td colspan='2' >
+					<br><input type='submit' value='Отчет' class='button_set'>
+				</td>
 			</tr>
 		</table>
 	</form>

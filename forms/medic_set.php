@@ -10,12 +10,13 @@
 <?php
 	session_start();
 
-	include("../lib/connect.php");
-	include("../lib/lib_auth.php");
-	include ("../blocks/header.php");
-	include ("../blocks/menu.php");
+	require_once("../config/config.php");
+	require_once("../lib/connect.php");
+	require_once("../lib/lib_auth.php");
+	require_once ("../blocks/header.php");
+	require_once ("../blocks/menu.php");
 	
-	check_permission(array('admin', 'user')); 
+	check_permission(['admin', 'user']); 
 		
 	$login = $_SESSION['login'];
 	
@@ -23,18 +24,18 @@
 	$result_auth = check_error_db($mysqli, $sql_auth);
 	$result = mysqli_fetch_array($result_auth);
 	
-	$user_id 	= $result['id'];
-	$user_name	= $result['user_name'];
-	$class 		= $result['class'];
+	$user_id = $result['id'];
+	$user_name = $result['user_name'];
+	$class = $result['class'];
 	$class_name	= $result['class_name'];
 	
 	$sql_eatery_user_data = "SELECT * FROM medic_user_data WHERE user_id = '$user_id'";
 	$result_eatery_user_data = check_error_db($mysqli, $sql_eatery_user_data);
 	$result = mysqli_fetch_array($result_eatery_user_data);
 	
-	$count  					= $result['count'];
-	$number_of_patients  = $result['number_of_patients'];
-	$patients_primary		= $result['patients_primary'];
+	$count = $result['count'];
+	$number_of_patients = $result['number_of_patients'];
+	$patients_primary = $result['patients_primary'];
 
     $disabled = "";
 	if( !inRoles("admin") ) {
@@ -53,27 +54,20 @@ echo "
 					</td>
 					<td>
 					";
-						if($disabled == "disabled") {
-							echo"
-								<input hidden name='class' value='".$class."'>
-							";
-						}
+						if($disabled == "disabled")
+							echo"<input hidden name='class' value='$class'>";
 						echo"
-						<select size='1' required name='class' ".$disabled.">
+						<select size='1' required name='class' $disabled>
 							<option disabled>Выберите класс</option>";
-							include("../blocks/select_class.php");
+							require_once("../blocks/select_class.php");
 						echo"
-						</select>
-						";
-						if($disabled == "disabled") {
-							echo"
-								<input hidden name='class_name' value='".$class_name."'>
-							";
-						}
+						</select>";
+						if($disabled == "disabled")
+							echo"<input hidden name='class_name' value='$class_name'>";
 						echo"
-						<select size='1' required name='class_name' ".$disabled.">
+						<select size='1' required name='class_name' $disabled>
 							<option disabled>Выберите класс</option>";
-							include("../blocks/select_class_name.php");
+							require_once("../blocks/select_class_name.php");
 						echo"
 						</select>
 					</td>
@@ -130,7 +124,7 @@ echo "
 						echo"
 						<select name='user_name' size='1' required id='select_user' ".$disabled.">
 							<option disabled>Выберите пользователя</option>";
-							include("../blocks/users_list.php");
+							require_once("../blocks/users_list.php");
 							echo"
 						</select>
 					</td>
@@ -150,7 +144,7 @@ echo "
   ";
 	$mysqli->close();
 
-	include("../blocks/footer.php");
+	require_once("../blocks/footer.php");
 ?>
  </body>
 </html>

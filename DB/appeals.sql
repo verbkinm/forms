@@ -52,17 +52,6 @@ CREATE TABLE `appeals` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `appeals`
---
-
-INSERT INTO `appeals` (`id`, `for_whom`, `employee`, `form_of_appeal`, `date`, `time`, `surname`, `name`, `patronymic`, `name_of_company`, `email`, `phone_number`, `text_of_appeal`, `checkbox_email`, `checkbox_take_it_personally`, `checkbox_mail`, `mail`, `file_name`, `url`, `status`) VALUES
-(137, 'Руководителю организации', 'Директор', 'Жалоба', '2018-12-25', '14:18:19', 'Вербкин', 'Михаил', 'Сергеевич', 'Лицей', 'verbkinm@yandex.ru', '+55555', 'пств ап\r\n\r\nапр\r\n\r\nап ываыва\r\n\r\nра\r\n\r\nпрпств ап\r\n\r\nапр\r\n\r\nап ываыва\r\n\r\nра\r\n\r\nпрпств ап\r\n\r\nапр\r\n\r\nап ываыва\r\n\r\nра\r\n\r\nпрпств ап\r\n\r\nапр\r\n\r\nап ываыва\r\n\r\nра\r\n\r\nпрпств ап\r\n\r\nапр\r\n\r\nап ываыва\r\n\r\nра\r\n\r\nпрпств ап\r\n\r\nапр\r\n\r\nап ываыва\r\n\r\nра\r\n\r\nпр', 'on', 'on', 'on', 'дом', 'uploads/20c9d7c11a420b631391c796209ca8a1/®ªã¬¥­â Microsoft Word.docx', '65e09f2ed1bff38655aba48b17dde8d6', 'Отклонено'),
-(138, 'Любому должностному лицу', 'ФИО', 'Предложение', '2019-01-24', '15:03:46', 'Вербкин', 'Михаил', '', '', 'verbkinm@ya.ru', '', 'fhfgh', 'on', '', '', '', '', 'fddd1181edff07d9b0dbf91a65758f46', 'Отклонено'),
-(139, 'Любому должностному лицу', 'кому угодно', 'Предложение', '2019-01-25', '11:44:38', 'Вербкин', 'Михаил', '', '', 'verbkinm@ya.ru', '', 'тест', 'on', '', '', '', 'uploads/f100466ec94de874ed0e87b14c70d0f9/hi-tech-technology-processor.jpg', 'ca00c1fde2b324dc7757eb12fc46d297', 'Отклонено');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `collaborators`
 --
 
@@ -74,16 +63,6 @@ CREATE TABLE `collaborators` (
   `patronymic` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `collaborators`
---
-
-INSERT INTO `collaborators` (`id`, `appeals_id`, `surname`, `name`, `patronymic`, `email`) VALUES
-(66, 137, 'Вербкин1', 'Михаил1', '', 'verbkinm@gmail'),
-(67, 137, 'Булшаков', 'Евгений', 'Батькович', 'verbkinm@gmail.com');
-
--- --------------------------------------------------------
 
 --
 -- Структура таблицы `history`
@@ -98,21 +77,6 @@ CREATE TABLE `history` (
   `author` varchar(50) NOT NULL,
   `answer` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `history`
---
-
-INSERT INTO `history` (`id`, `appeals_id`, `date`, `time`, `status`, `author`, `answer`) VALUES
-(63, 137, '2018-12-25', '14:27:05', 'В обработке', '87', 'я думаю!\r\n !\r\n...'),
-(64, 137, '2018-12-25', '15:01:12', 'Отклонено', '2', '!!!!!'),
-(65, 137, '2018-12-25', '15:01:35', 'Дан ответ отправителю', 'Администратор', ''),
-(66, 137, '2019-01-09', '09:01:19', 'Отклонено', 'Секретарь', 'дтит оыолдчмсыосмлд\r\nл\r\nхана'),
-(67, 138, '2019-01-24', '15:05:07', 'Отклонено', 'Секретарь', '!!!'),
-(68, 138, '2019-01-25', '10:45:48', 'Дан ответ отправителю', 'Приёмная', ''),
-(69, 139, '2019-01-26', '09:03:40', 'Дан ответ отправителю', 'Администратор', ''),
-(70, 139, '2019-03-13', '09:18:05', 'Отклонено', 'Администратор', ''),
-(71, 138, '2019-03-13', '09:18:17', 'Отклонено', 'Администратор', '');
 
 --
 -- Индексы сохранённых таблиц
@@ -145,19 +109,19 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT для таблицы `appeals`
 --
 ALTER TABLE `appeals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT для таблицы `collaborators`
 --
 ALTER TABLE `collaborators`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT для таблицы `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

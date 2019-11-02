@@ -11,12 +11,13 @@
 <?php  
 	session_start();
 
-	include("../lib/connect.php");
-	include("../lib/lib_auth.php");
-	include ("../blocks/header.php");
-	include ("../blocks/menu.php");
+	require_once("../config/config.php");
+	require_once("../lib/connect.php");
+	require_once("../lib/lib_auth.php");
+	require_once ("../blocks/header.php");
+	require_once ("../blocks/menu.php");
 		
-	check_permission(array('admin', 'user')); 
+	check_permission(['admin', 'user']); 
 	
 	$login = $_SESSION['login'];
 	
@@ -55,27 +56,20 @@ echo "
 					<td>
 						";
 						if($disabled == "disabled") 
-						{
-							echo"
-								<input hidden name='class' value='".$class."'>
-							";
-						}
+							echo "<input hidden name='class' value='$class'>";
 						echo"
-						<select size='1' required name='class' ".$disabled.">
+						<select size='1' required name='class' $disabled>
 							<option disabled>Выберите класс</option>";
-							include("../blocks/select_class.php");
+							require_once("../blocks/select_class.php");
 						echo"
 						</select>
 						";
-						if($disabled == "disabled") {
-							echo"
-								<input hidden name='class_name' value='".$class_name."'>
-							";
-						}
+						if($disabled == "disabled") 
+							echo "<input hidden name='class_name' value='$class_name'>";
 						echo"
-						<select size='1' required name='class_name' ".$disabled.">
+						<select size='1' required name='class_name' $disabled>
 							<option disabled>Выберите класс</option>";
-							include("../blocks/select_class_name.php");
+							require_once("../blocks/select_class_name.php");
 						echo"
 						</select>
 					</td>
@@ -92,26 +86,13 @@ echo "
 						<table class='table_passes'>
 					
 							<thead>
-								<td style='width:20px;'>
-									№
-								</td>
-								<td style='width:200px;'>
-									Ф.И.О. ученика
-								</td>
-								<td>
-									По болезни
-								</td>
-								<td>
-									По уважительной причине
-								</td>
-								<td>
-									По неуважительной причине
-								</td>
-								<td>
-									Всего
-								</td>
-								<td style='width:40px;'>
-								</td>
+								<td style='width:20px;'>№</td>
+								<td style='width:200px;'>Ф.И.О. ученика</td>
+								<td>По болезни</td>
+								<td>По уважительной причине</td>
+								<td>По неуважительной причине</td>
+								<td>Всего</td>
+								<td style='width:40px;'></td>
                             </thead>
 
                             <tr id='no_missing'>
@@ -128,45 +109,35 @@ echo "
 				</tr>
 				
 				<tr>
-					<td>
-						Итого:
-					</td>
-					<td>
-						<input id='total' type='number' min='0' max='1000' name='pass_count' value='0' readonly required>
-					</td>
+					<td>Итого:</td>
+					<td><input id='total' type='number' min='0' max='1000' name='pass_count' value='0' readonly required></td>
 				</tr>
 				<tr>
-					<td colspan='2'>
-						<hr>
-					</td>
+					<td colspan='2'><hr></td>
 				</tr>
 				
 				<tr>
-					<td>
-						Классный руководитель:
-					</td>
+					<td>Классный руководитель:</td>
 					<td>
 						";
-						if($disabled == "disabled") {
-							echo"
-								<input hidden name='user_name' value='".$user_name."'>
-							";
-						}
+						if($disabled == "disabled")
+							echo "<input hidden name='user_name' value='$user_name'>";
 						echo"
-						<select name='user_name' size='1' required id='select_user' ".$disabled.">
+						<select name='user_name' size='1' required id='select_user' $disabled>
 							<option disabled>Выберите пользователя</option>";
-							include("../blocks/users_list.php");
+							require_once("../blocks/users_list.php");
 							echo"
 						</select>
 					</td>
 				</tr>
 				<tr>
-                <td colspan='2' >";
-                    $disabled_submit = "";
-					if( (($class == "0") || ($class_name == "0")) && !inRoles("admin") ) {$disabled_submit="disabled";}
-					echo"
-					<br><input type='submit' value='Отправить' class='button_set'".$disabled_submit.">
-				</td>
+					<td colspan='2' >";
+						$disabled_submit = "";
+						if( (($class == "0") || ($class_name == "0")) && !inRoles("admin") ) 
+							$disabled_submit = "disabled";
+						echo"
+						<br><input type='submit' value='Отправить' class='button_set' $disabled_submit>
+					</td>
 				</tr>
 			</table>
 		</form>
@@ -174,7 +145,7 @@ echo "
 ";
     $mysqli->close();
 
-	include("../blocks/footer.php");
+	require_once("../blocks/footer.php");
 ?>
  </body>
 	<script type="text/javascript" src="../js/passes/passes.js">	

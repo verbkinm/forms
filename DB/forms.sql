@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Сен 02 2019 г., 12:13
--- Версия сервера: 5.6.44
+-- Время создания: Ноя 02 2019 г., 12:36
+-- Версия сервера: 5.7.27-log
 -- Версия PHP: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -32,7 +32,6 @@ CREATE TABLE `auth` (
   `id` int(11) NOT NULL,
   `login` varchar(65) NOT NULL,
   `password` varchar(65) NOT NULL,
-  `role` varchar(15) NOT NULL DEFAULT 'user',
   `user_name` varchar(20) DEFAULT NULL,
   `class` int(2) DEFAULT NULL,
   `class_name` varchar(1) DEFAULT NULL,
@@ -46,8 +45,8 @@ CREATE TABLE `auth` (
 -- Дамп данных таблицы `auth`
 --
 
-INSERT INTO `auth` (`id`, `login`, `password`, `role`, `user_name`, `class`, `class_name`, `date`, `time`, `last_login`, `login_ip`) VALUES
-(1, 'admin', '$2y$10$CfswB90VKMQ.pBtuQnvzBOGTgSzPxiqW346aGQeZP3TVXmW3nR8XS', 'admin', 'Администратор', 0, '0', '2018-05-12', '08:50:12', '2019-09-02 11:47:14', '192.168.100.253');
+INSERT INTO `auth` (`id`, `login`, `password`, `user_name`, `class`, `class_name`, `date`, `time`, `last_login`, `login_ip`) VALUES
+(15, 'admin', '$2y$10$CfswB90VKMQ.pBtuQnvzBOGTgSzPxiqW346aGQeZP3TVXmW3nR8XS', 'Администратор', 0, '0', '2018-05-12', '08:50:12', '2019-11-02 11:31:53', '192.168.100.253');
 
 -- --------------------------------------------------------
 
@@ -79,6 +78,8 @@ CREATE TABLE `eatery_user_data` (
   `names_lg` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+
 --
 -- Структура таблицы `medic`
 --
@@ -108,20 +109,30 @@ CREATE TABLE `medic_user_data` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Структура таблицы `missing`
+-- Структура таблицы `passes`
 --
 
-CREATE TABLE `missing` (
+CREATE TABLE `passes` (
   `id` int(11) NOT NULL,
   `class` int(2) NOT NULL,
   `class_name` varchar(1) NOT NULL,
-  `count` int(100) DEFAULT NULL,
-  `number_of_patients` text,
-  `not_a_good_reason` text,
-  `accepted_measure` text,
-  `user_name` varchar(65) DEFAULT NULL,
-  `date` date NOT NULL,
-  `time` time NOT NULL
+  `user_name` varchar(65) NOT NULL,
+  `week_number` int(2) NOT NULL,
+  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Структура таблицы `passes_application`
+--
+
+CREATE TABLE `passes_application` (
+  `id` int(11) NOT NULL,
+  `passes_id` int(11) NOT NULL,
+  `student_name` varchar(65) DEFAULT NULL,
+  `absence_due_to_illness` int(2) NOT NULL DEFAULT '0',
+  `absence_for_a_good_reason` int(2) NOT NULL DEFAULT '0',
+  `absence_of_a_valid_reason` int(2) NOT NULL DEFAULT '0',
+  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -135,11 +146,8 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `roles`
+-- Индексы сохранённых таблиц
 --
-
-INSERT INTO `roles` (`id`, `user_id`, `role`) VALUES
-(1, 1, 'admin');
 
 --
 -- Индексы таблицы `auth`
@@ -172,9 +180,15 @@ ALTER TABLE `medic_user_data`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `missing`
+-- Индексы таблицы `passes`
 --
-ALTER TABLE `missing`
+ALTER TABLE `passes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `passes_application`
+--
+ALTER TABLE `passes_application`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -218,16 +232,22 @@ ALTER TABLE `medic_user_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
--- AUTO_INCREMENT для таблицы `missing`
+-- AUTO_INCREMENT для таблицы `passes`
 --
-ALTER TABLE `missing`
+ALTER TABLE `passes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
+-- AUTO_INCREMENT для таблицы `passes_application`
+--
+ALTER TABLE `passes_application`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

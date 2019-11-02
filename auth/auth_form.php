@@ -9,7 +9,7 @@
  </head>
  <body class="body_auth_form">
 <?php
-	session_start(); //Запускаем сессии
+	session_start();
 	
 	require_once("../lib/connect.php");  	
 	require_once ("../lib/lib_auth.php");
@@ -22,7 +22,7 @@
 	    if (!auth($_POST["login"], $_POST["password"],$mysqli)) //Если логин и пароль введен не правильно
 	        echo "<h2 style=\"color:red;\">Логин или пароль введен не правильно!</h2>";
 	}
-	if(isset($_SESSION["is_auth"]) && $_SESSION["is_auth"])
+	if(isset($_SESSION["is_auth"]) && $_SESSION["is_auth"] == true)
 	{
 		header('Location: ../index.php');
 	}

@@ -11,12 +11,13 @@
 <?php
 	session_start();
 	
-	include("../lib/connect.php");
-	include("../lib/lib_auth.php");
-	include ("../blocks/header.php");
-	include ("../blocks/menu.php");
+	require_once("../config/config.php");
+	require_once("../lib/connect.php");
+	require_once("../lib/lib_auth.php");
+	require_once ("../blocks/header.php");
+	require_once ("../blocks/menu.php");
 	
-	check_permission(array('admin', 'user')); 
+	check_permission(['admin', 'user']); 
 
 	$login = $_SESSION['login'];
 	
@@ -24,9 +25,9 @@
 	$result_auth = check_error_db($mysqli, $sql_auth);
 	$result = mysqli_fetch_array($result_auth);
 	
-	$user_id 	= $result['id'];
-	$user_name	= $result['user_name'];
-	$class 		= $result['class'];
+	$user_id = $result['id'];
+	$user_name = $result['user_name'];
+	$class = $result['class'];
 	$class_name	= $result['class_name'];
 	
 	$sql_eatery_user_data = "SELECT * FROM eatery_user_data WHERE user_id = '$user_id'";
@@ -55,27 +56,20 @@ echo "
 				<td>
 					";
 					if($disabled == "disabled") 
-					{
-						echo"
-							<input hidden name='class' value='".$class."'>
-						";
-					}
+						echo"<input hidden name='class' value='$class'>";
 					echo"
-					<select size='1' required name='class' ".$disabled.">
+					<select size='1' required name='class' $disabled>
 						<option disabled>Выберите класс</option>";
-						include("../blocks/select_class.php");
+						require_once("../blocks/select_class.php");
 					echo"
 					</select>
 					";
-					if($disabled == "disabled") {
-						echo"
-							<input hidden name='class_name' value='".$class_name."'>
-						";
-					}
+					if($disabled == "disabled")
+						echo"<input hidden name='class_name' value='$class_name'>";
 					echo"
-					<select size='1' required name='class_name' ".$disabled.">
+					<select size='1' required name='class_name' $disabled>
 						<option disabled>Выберите класс</option>";
-						include("../blocks/select_class_name.php");
+						require_once("../blocks/select_class_name.php");
 					echo"
 					</select>
 				</td>
@@ -92,7 +86,7 @@ echo "
 					Количество детей:
 				</td>
 				<td>
-					<input name='count' required type='number' min='0' max='100' value='".$count."'> 
+					<input name='count' required type='number' min='0' max='100' value='$count'> 
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +94,7 @@ echo "
 					Из них - льготников:
 				</td>
 				<td>
-					<input name='count_lg' required type='number' min='0' max='100' value='".$count_lg."'>
+					<input name='count_lg' required type='number' min='0' max='100' value='$count_lg'>
 				</td>
 			</tr>
 			<tr>
@@ -108,7 +102,7 @@ echo "
 					Ф.И. льготников:
 				</td>
 				<td>
-					<textarea name='names_lg'>".$names_lg."</textarea>
+					<textarea name='names_lg'>$names_lg</textarea>
 				</td>
 			</tr>
 			
@@ -126,13 +120,13 @@ echo "
 					";
 					if($disabled == "disabled") {
 						echo"
-							<input hidden name='user_name' value='".$user_name."'>
+							<input hidden name='user_name' value='$user_name'>
 						";
 					}
 					echo"
-					<select name='user_name' size='1' required id='select_user' ".$disabled.">
+					<select name='user_name' size='1' required id='select_user' $disabled>
 						<option disabled>Выберите пользователя</option>";
-						include("../blocks/users_list.php");
+						require_once("../blocks/users_list.php");
 						echo"
 					</select>
 				</td>
@@ -140,9 +134,10 @@ echo "
 			<tr>
                 <td colspan='2' >";
                     $disabled_submit = "";
-					if( (($class == "0") || ($class_name == "0")) && !inRoles("admin") ) {$disabled_submit="disabled";}
+					if( (($class == "0") || ($class_name == "0")) && !inRoles("admin") ) 
+						$disabled_submit = "disabled";
 					echo"
-					<br><input type='submit' value='Отправить' class='button_set'".$disabled_submit.">
+					<br><input type='submit' value='Отправить' class='button_set' $disabled_submit>
 				</td>
 			</tr>
 		</table>
@@ -151,7 +146,7 @@ echo "
   ";
 	$mysqli->close();
 
-	include("../blocks/footer.php");
+	require_once("../blocks/footer.php");
 ?>	
  </body>
 </html>

@@ -1,11 +1,14 @@
  <?php
-// классные руководители раз в неделю, вместе с табелем питания, должны относить подписанные от руки заявки на питание
+ 	session_start();
+	
+	require_once_once("../lib/lib_auth.php");
+	check_permission(['admin', 'user']); 
 
     if($_POST['hide'] == "report_eatery_pdf") 
     {
-		include("../lib/connect.php");
-	   define('FPDF_FONTPATH','../fonts/');
-	   require('../lib/fpdf/fpdf.php');
+		require_once("../lib/connect.php");
+		define('FPDF_FONTPATH','../fonts/');
+		require_once('../lib/fpdf/fpdf.php');
 
 		$width 			= 90;
 		$height 		= 90;

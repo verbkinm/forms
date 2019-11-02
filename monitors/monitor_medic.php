@@ -18,7 +18,7 @@
 	require_once ("../blocks/header.php");
 	require_once ("../blocks/menu.php");
 	
-	check_permission(array('admin', 'user', 'monitor'));
+	check_permission(['admin', 'user', 'monitor', 'monitor_medic']);
 	
 	require_once("lib_monitors.php");
 	
@@ -36,7 +36,7 @@
 		echo"
 		</div>";
 		
-	require_once("medic_table.php");	
+	require_once("tables/medic_table.php");	
 	create_table($NOT_FOR_PRINT);
 	
 	echo"	 
