@@ -43,7 +43,7 @@
 	}
 echo "
 	<div class='content'>	
-		<h3>Информация о количестве больных</h3>
+		<h1>Ведомость о количестве больных</h1>
 		<div class='message_incorrect'>Внимание! <br> После отправки - данные заявки исправить нельзя! <br> <br></div>
 		<form action='get.php' method='post'>
 			<input name='hide' value='medic' hidden>

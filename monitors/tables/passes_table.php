@@ -3,6 +3,7 @@
 	{	
 		global $date;
 		global $_class_numbers;
+		global $_class_letters;
 		global $mysqli;
 		
 		$current_time = strtotime($date);
@@ -35,60 +36,67 @@
 				<td>Всего <br>для ученика</td>
 				<td>Всего <br>в классе</td>
 				<td>Классный <br>руководитель</td>
-				<td>Дата и <br>время подачи</td>";
-				if(!$is_for_print && (inRoles("admin") || inRoles("editor"))  )
-					echo "<td>Изменить <br>данные</td>";
-			echo "
 			</tr>
 		</thead>";
 
 		$week_number = date("W", strtotime($first_day_in_week));
 		$counter = 0;
-		for ($i = $_class_numbers[0]; $i <= count($_class_numbers); $i++) 
+		for ($class_number = $_class_numbers[0]; $class_number <= count($_class_numbers); $class_number++) 
 		{
-			$sql = "SELECT * FROM passes WHERE week_number = '$week_number' AND class = $i ORDER BY class_name";
-			$result = check_error_db($mysqli, $sql);		
-			
-			while ($request = $result->fetch_assoc()) 
+			for ($class_letter_index = 0; $class_letter_index < count($_class_letters); $class_letter_index++) 
 			{
-				++$counter;
-				$full_class_name = $request['class'].$request['class_name'];
-				$user_name = $request['user_name'];
-				$date_time = date("d-m-Y H:i:s", strtotime($request['date_time']));
-				echo"
-				<tr>
-					<td>$counter</td>
-					<td>$full_class_name</td>";
-					$passes_id = $request['id'];
-					$sub_sql = "SELECT * FROM passes_application WHERE passes_id = $passes_id ORDER BY student_name";
-					$sub_result = check_error_db($mysqli, $sub_sql);
-					
+				$class_name = $_class_letters[$class_letter_index];
+				$sql = "SELECT * FROM passes WHERE week_number = '$week_number' 
+						AND class = $class_number 
+						AND class_name = '$class_name'";
+				$result = check_error_db($mysqli, $sql);
+				
+				if ($result->num_rows > 0) 
+				{
 					$children = array();
-					while ($sub_request = $sub_result->fetch_assoc()) 
+					++$counter;
+
+						
+					while ($request = $result->fetch_assoc()) 
 					{
-						$children[$sub_request['student_name']] = array($sub_request['absence_due_to_illness'], $sub_request['absence_for_a_good_reason'], $sub_request['absence_of_a_valid_reason']);
+						
+						$full_class_name = $request['class'].$request['class_name'];
+						$user_name = $request['user_name'];
+						$date_time = date("d-m-Y H:i:s", strtotime($request['date_time']));
+						
+						$passes_id = $request['id'];
+						$sub_sql = "SELECT * FROM passes_application WHERE passes_id = $passes_id ORDER BY student_name";
+						$sub_result = check_error_db($mysqli, $sub_sql);
+							
+						while ($sub_request = $sub_result->fetch_assoc()) 
+						{
+							// $children[$sub_request['student_name']] = array($sub_request['absence_due_to_illness'], $sub_request['absence_for_a_good_reason'], $sub_request['absence_of_a_valid_reason']);
+							if(isset($children[$sub_request['student_name']][0]))
+								$children[$sub_request['student_name']][0] += $sub_request['absence_due_to_illness'];
+							else
+								$children[$sub_request['student_name']][0] = $sub_request['absence_due_to_illness'];
+							if(isset($children[$sub_request['student_name']][1]))
+								$children[$sub_request['student_name']][1] += $sub_request['absence_for_a_good_reason'];
+							else
+								$children[$sub_request['student_name']][1] = $sub_request['absence_for_a_good_reason'];
+							if(isset($children[$sub_request['student_name']][2]))
+								$children[$sub_request['student_name']][2] += $sub_request['absence_of_a_valid_reason'];
+							else
+								$children[$sub_request['student_name']][2] = $sub_request['absence_of_a_valid_reason'];
+						}
 					}
-					
+					echo"
+					<tr>
+						<td>$counter</td>
+						<td>$class_number$class_name</td>";
 					print_children_data($children, 0);
 					print_children_data($children, 1);
 					print_children_data($children, 2);
-					total_absence($children, $total_absence_due_to_illness, $total_absence_of_a_valid_reason, $total_absence_for_a_good_reason);
-					
+					print_total_absence($children, $total_absence_due_to_illness, $total_absence_of_a_valid_reason, $total_absence_for_a_good_reason);
 					echo"
-					<td>$user_name</td>
-					<td>$date_time</td>";
-					if(!$is_for_print &&  (inRoles("admin") || inRoles("editor")) )
-					{
-						echo"
-						<td>
-							<form action='../forms/pass_edit.php' method='post'>
-								<input name='passes_id' value='$passes_id' hidden>
-								<input type='submit' value='' class='form_edit_button'>
-							</form>
-						</td>";
-					}
-				echo"
-				</tr>";
+						<td>$user_name</td>
+					</tr>";
+				}
 			}
 		}
 		echo"
@@ -165,7 +173,6 @@
 				<td>Всего <br>для ученика</td>
 				<td>Всего <br>в классе</td>
 				<td>Классный <br>руководитель</td>
-				<td>Дата и <br>время подачи</td>
 			</tr>
 		</thead>";
 
@@ -204,9 +211,8 @@
 					print_children_data($children, 0);
 					print_children_data($children, 1);
 					print_children_data($children, 2);
-					total_absence($children, $total_absence_due_to_illness, $total_absence_of_a_valid_reason, $total_absence_for_a_good_reason);
+					print_total_absence($children, $total_absence_due_to_illness, $total_absence_of_a_valid_reason, $total_absence_for_a_good_reason);
 					print_children_data_once($children, 3);
-					print_children_data_once($children, 4);
 					echo"
 				</tr>";
 		}
@@ -241,8 +247,14 @@
 	function print_children_data($children, $field_number)
 	{
 		echo "<td>";
-		foreach($children as $child_name => $val)
-			echo $child_name." - ".$children[$child_name][$field_number]."<br>";
+		foreach($children as $child_name => $value)
+		{
+			$val = $children[$child_name][$field_number];
+			if($val != 0)
+				echo $child_name." - ".$val."<br>";
+			else
+				echo"---------------<br>";
+		}
 		echo "</td>";
 	}
 	
@@ -257,7 +269,7 @@
 		echo "</td>";
 	}
 	
-	function total_absence($children, &$total_absence_due_to_illness, &$total_absence_of_a_valid_reason, &$total_absence_for_a_good_reason)
+	function print_total_absence($children, &$total_absence_due_to_illness, &$total_absence_of_a_valid_reason, &$total_absence_for_a_good_reason)
 	{		
 		$sum = 0;
 		echo"<td>";

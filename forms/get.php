@@ -22,17 +22,61 @@
 	
 	if($_POST['hide']=="medic") 
 	{
+		medic();
+	}
+    elseif($_POST['hide'] == "eatery") 
+    {
+		eatery();
+	}
+    elseif($_POST['hide'] == "eatery_edit") 
+    {			
+		eatery_edit();
+	}
+    elseif($_POST['hide'] == "missing") 
+    {
+		missing();
+	}
+	// elseif($_POST['hide'] == "missing_edit")
+	// {
+		// $passes_id = $_POST['passes_id'];
+		// $sql = "DELETE FROM passes_application WHERE passes_id = $passes_id";	
+		// correct_or_error($mysqli, $sql, "<div class='message_correct'>Данные удалены!</div>");
+		
+        // $i = 0;
+        // while($i < 50) //50 - максимальное значение учеников
+        // {	
+			// if(isset($_POST["name_of_patients$i"]))
+            // {
+				// $name_of_patients = $_POST["name_of_patients$i"];
+                // $absence_due_to_illness = $_POST["absence_due_to_illness$i"];
+                // $absence_for_a_good_reason = $_POST["absence_for_a_good_reason$i"];
+                // $absence_of_a_valid_reason =  $_POST["absence_of_a_valid_reason$i"];
+    
+	    	    // $sql = "INSERT INTO passes_application (passes_id, student_name, absence_due_to_illness, absence_for_a_good_reason, absence_of_a_valid_reason)
+						// VALUES ($passes_id, '$name_of_patients', $absence_due_to_illness, $absence_for_a_good_reason, $absence_of_a_valid_reason)";
+		        // correct_or_error($mysqli, $sql, "<div class='message_correct'>Успешно создана новая запись!</div>");
+            // }
+            // $i++;
+        // }
+	// }
+	else 
+		echo"<h3>Неккоректные данные!</h3>";
+	
+	
+	function medic()
+	{
+		global $mysqli;
 		$user_id = $mysqli->query("SELECT id FROM auth WHERE login = '$login'")->fetch_object()->id;
 		
-		$class 					= strip_tags($_POST['class']);
-		$class_name 			= strip_tags($_POST['class_name']);
+		$class = strip_tags($_POST['class']);
+		$class_name = strip_tags($_POST['class_name']);
 		if( ($class == "0") || ($class_name == "0") ) {$class=$class_name=0;}		
-		$count 					= strip_tags($_POST['count']);
-		$number_of_patients 	= strip_tags($_POST['number_of_patients']);
-		$patients_primary 	= strip_tags($_POST['patients_primary']);
-		$user_name 				= strip_tags($_POST['user_name']);
-		$date 					= date("Y/m/d");
-		$time 					= date("H:i:s");
+		$count = strip_tags($_POST['count']);
+		$number_of_patients = strip_tags($_POST['number_of_patients']);
+		$patients_primary = strip_tags($_POST['patients_primary']);
+		$user_name = strip_tags($_POST['user_name']);
+		$date = date("Y/m/d");
+		$time = date("H:i:s");
 			
 		$sql = "SELECT * FROM medic WHERE date = '$date' AND class = $class AND  class_name = '$class_name' 	";	
 		$result = check_error_db($mysqli, $sql);
@@ -47,22 +91,25 @@
 			correct_or_error($mysqli, $sql, "");
 		}
 		else
-			echo "<div class='message_incorrect'>Заявка на сегодняшний день уже была отправлена, повторная отправка данных - невозможна!</div";
+			echo "<div class='message_incorrect'>Заявка на сегодняшний день уже была отправлена, повторная отправка данных - невозможна!</div>";
 		$mysqli->close();	
+		
 	}
-    elseif($_POST['hide'] == "eatery") 
-    {
+	
+	function eatery()
+	{
+		global $mysqli;
 		$user_id = $mysqli->query("SELECT id FROM auth WHERE login = '$login'")->fetch_object()->id;
 		
-		$class 		= strip_tags($_POST['class']);
+		$class = strip_tags($_POST['class']);
 		$class_name = strip_tags($_POST['class_name']);
 		if( ($class == "0") || ($class_name == "0") ) {$class=$class_name=0;}		
-		$count 		= strip_tags($_POST['count']);
-		$count_lg 	= strip_tags($_POST['count_lg']);
-		$user_name 	= strip_tags($_POST['user_name']);
-		$names_lg 	= strip_tags($_POST['names_lg']);
-		$date 		= date("Y/m/d");
-		$time 		= date("H:i:s");
+		$count = strip_tags($_POST['count']);
+		$count_lg = strip_tags($_POST['count_lg']);
+		$user_name = strip_tags($_POST['user_name']);
+		$names_lg = strip_tags($_POST['names_lg']);
+		$date = date("Y/m/d");
+		$time = date("H:i:s");
 			
 		$sql = "SELECT * FROM eatery WHERE date = '$date' AND class = $class AND  class_name = '$class_name' 	";	
 		$result = check_error_db($mysqli, $sql);
@@ -75,18 +122,20 @@
 					WHERE user_id = $user_id";	
 			correct_or_error($mysqli, $sql, "");
 		}
-		else{
+		else
+		{
 			echo "<div class='message_incorrect'>Заявка на сегодняшний день уже была отправлена, повторная отправка данных - невозможна!</div";
 		}
-		$mysqli->close(); 		
-	
+		$mysqli->close(); 	
 	}
-    elseif($_POST['hide'] == "eatery_edit") 
-    {			
-   	    $id			= strip_tags($_POST['id']);	
-		$count 		= strip_tags($_POST['count']);
-		$count_lg 	= strip_tags($_POST['count_lg']);
-		$names_lg 	= strip_tags($_POST['names_lg']);
+	
+	function eatery_edit()
+	{
+		global $mysqli;
+		$id	= strip_tags($_POST['id']);	
+		$count = strip_tags($_POST['count']);
+		$count_lg = strip_tags($_POST['count_lg']);
+		$names_lg = strip_tags($_POST['names_lg']);
 			
 		$sql = "SELECT * FROM eatery WHERE id = '$id' ";	
 		$result = check_error_db($mysqli, $sql);
@@ -97,79 +146,58 @@
 		$mysqli->close();	
 	}
 	
-    elseif($_POST['hide'] == "missing") 
-    {
-        $user_id = $mysqli->query("SELECT id FROM auth WHERE login = '$login'")->fetch_object()->id;
+	function missing()
+	{
+		global $mysqli;
 		
-		$class 		= strip_tags($_POST['class']);
+		$class = strip_tags($_POST['class']);
 		$class_name = strip_tags($_POST['class_name']);
+		$current_day = strip_tags($_POST['current_day']);
 		if( ($class == "0") || ($class_name == "0") ) {$class=$class_name=0;}		
-        $user_name 	= strip_tags($_POST['user_name']);
-        $week_number = date("W");
+        $user_name = strip_tags($_POST['user_name']);
+		$week_number = strip_tags($_POST['week_number']);
+		if($week_number != date("W"))
+		{
+			echo "<div class='message_incorrect'>Изменение данных возможно только на некущую неделю!</div>";
+			exit();
+		}
 
-        $sql = "SELECT * FROM passes WHERE week_number = $week_number AND class = $class AND  class_name = '$class_name'";	
+        $sql = "SELECT * FROM passes WHERE week_number = $week_number 
+				AND class = $class AND  class_name = '$class_name' 
+				AND day_number = $current_day";	
 		$result = check_error_db($mysqli, $sql);
-		if ($result->num_rows == 0) 
+        if ($result->num_rows > 0) 
         {
-			$sql = "INSERT INTO passes (class, class_name, user_name, week_number)
-					VALUES ( $class, '$class_name', '$user_name', $week_number)";
-		    correct_or_error($mysqli, $sql, "<div class='message_correct'>Успешно создана новая запись!</div>");
+			$request = $result->fetch_assoc();
+			$passes_id = $request['id'];
+			$sql = "DELETE FROM passes_application WHERE passes_id = $passes_id";
+			correct_or_error($mysqli, $sql, "<div class='message_correct'>Данные удалены!</div>");
+		}
+		else
+		{
+			$sql = "INSERT INTO passes (class, class_name, user_name, week_number, day_number)
+					VALUES ( $class, '$class_name', '$user_name', $week_number, $current_day)";
+			correct_or_error($mysqli, $sql, "<div class='message_correct'>Успешно создана новая запись!</div>");
 			$passes_id = $mysqli->insert_id;
-			
-            $i = 0;
-            while($i < 50) //50 - максимальное значение учеников
-            {	
-                if(isset($_POST["name_of_patients$i"]))
-                {
-                    $name_of_patients = $_POST["name_of_patients$i"];
-                    $absence_due_to_illness = $_POST["absence_due_to_illness$i"];
-                    $absence_for_a_good_reason = $_POST["absence_for_a_good_reason$i"];
-                    $absence_of_a_valid_reason =  $_POST["absence_of_a_valid_reason$i"];
-    
-	    	        $sql = "INSERT INTO passes_application (passes_id, student_name, absence_due_to_illness, absence_for_a_good_reason, absence_of_a_valid_reason)
-							VALUES ($passes_id, '$name_of_patients', $absence_due_to_illness, $absence_for_a_good_reason, $absence_of_a_valid_reason)";
-		            correct_or_error($mysqli, $sql, "<div class='message_correct'>Успешно создана новая запись!</div>");
-                }
-                $i++;
-            }
-        }
-        else
-			echo "<div class='message_incorrect'>Заявка не текущую неделю уже была отправлена, повторная отправка данных - невозможна!</div";
-	}
-	elseif($_POST['hide'] == "missing_edit")
-	{
-		$passes_id = $_POST['passes_id'];
-		$sql = "DELETE FROM passes_application WHERE passes_id = $passes_id";	
-		correct_or_error($mysqli, $sql, "<div class='message_correct'>Данные удалены!</div>");
-		
-        $i = 0;
-        while($i < 50) //50 - максимальное значение учеников
-        {	
+		}
+		$i = 0;
+		while($i < 50) //50 - максимальное значение учеников
+		{	
 			if(isset($_POST["name_of_patients$i"]))
-            {
+			{
 				$name_of_patients = $_POST["name_of_patients$i"];
-                $absence_due_to_illness = $_POST["absence_due_to_illness$i"];
-                $absence_for_a_good_reason = $_POST["absence_for_a_good_reason$i"];
-                $absence_of_a_valid_reason =  $_POST["absence_of_a_valid_reason$i"];
-    
-	    	    $sql = "INSERT INTO passes_application (passes_id, student_name, absence_due_to_illness, absence_for_a_good_reason, absence_of_a_valid_reason)
-						VALUES ($passes_id, '$name_of_patients', $absence_due_to_illness, $absence_for_a_good_reason, $absence_of_a_valid_reason)";
-		        correct_or_error($mysqli, $sql, "<div class='message_correct'>Успешно создана новая запись!</div>");
-            }
-            $i++;
-        }
-	}
-	else 
-		echo"<h3>Неккоректные данные!</h3>";
-    
+				$absence_due_to_illness = $_POST["absence_due_to_illness$i"];
+				$absence_for_a_good_reason = $_POST["absence_for_a_good_reason$i"];
+				$absence_of_a_valid_reason =  $_POST["absence_of_a_valid_reason$i"];
 
-	echo"
-	</div>";
-	
-	function passes_insert()
-	{
-		
+				$sql = "INSERT INTO passes_application (passes_id, student_name, absence_due_to_illness, absence_for_a_good_reason, absence_of_a_valid_reason)
+						VALUES ($passes_id, '$name_of_patients', $absence_due_to_illness, $absence_for_a_good_reason, $absence_of_a_valid_reason)";
+				correct_or_error($mysqli, $sql, "<div class='message_correct'>Успешно создана новая запись!</div>");
+			}
+			$i++;
+		}	
 	}
 ?>
+	</div>
  </body>
 </html>

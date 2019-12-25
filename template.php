@@ -1,25 +1,28 @@
 <!DOCTYPE HTML>
-<html>
+<html  lang="ru">
 	<head>
 		<meta charset="utf-8">
-	   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+	    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 		<link rel="stylesheet" href="css/style.css">
-	   <title>Главная</title>
+	    <title>Главная</title>
 	</head>
 	<body class="body_index">
-		<?php
-			session_start();
-			
-			include("lib/connect.php");
-			include("lib/lib_auth.php");
-			include ("blocks/header.php");
-			include ("blocks/menu.php");
-		?>	
-		<div class="content">	
+	
+	<?php
+		session_start();
 		
-		</div>	
-<?php
-	include("blocks/footer.php");
-?>
+		require_once("lib/connect.php");
+		require_once("lib/lib_auth.php");
+		require_once("blocks/header.php");
+		require_once("blocks/menu.php");
+	?>	
+	
+	<div class="content">	
+
+	</div>	
+	<?php
+		require_once("blocks/footer.php");
+	?>
 	 </body>
 </html>
+

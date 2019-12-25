@@ -29,7 +29,7 @@
 	
 echo"	
 	<div class='content'>
-		<h3>Изменить данные пользователя</h3>
+		<h1>Изменить данные пользователя</h1>
 		<form action='edit_user_get.php' method='post'>
 			<input name='hide' value='edit' hidden>
 			<table class='table_set_data'>

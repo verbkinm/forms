@@ -15,8 +15,8 @@
 			header("Location: http://".$_SERVER['SERVER_NAME']."/auth/auth_form.php?sign=now");
 		}
 	}
-echo"
-<!-- <script type='text/javascript' src='../snow-fall.js'></script> -->
+	echo"
+	<script type='text/javascript' src='/js/snow-fall.js'></script>
 	<header>
 		<img class='logo' src='/img/logo.png'>
 		<div class='header_text'>

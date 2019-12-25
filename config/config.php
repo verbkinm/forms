@@ -12,7 +12,8 @@
 		'monitor_passes' => 'Наблюдатель-пропуски',
 		'monitor_appeals' => 'Наблюдатель-обращения',
 		'appeals' => 'Обращения',
-		'soc-pedagog' => 'Соц. педагог'
+		'soc-pedagog' => 'Соц. педагог',
+		'ot' => 'Охрана_труда'
 	];
 	
 	$FOR_PRINT = true;

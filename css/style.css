@@ -21,10 +21,15 @@ body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_re
 
 /* Ссылки-кнопки */
 .content .button{
+	width: 15em;
+	height: 2.5em;
+}
+.content .button_day, .content .button_day_selected{
+	width: 100%;
+}
+.content .button, .content .button_day, .content .button_day_selected{
   display: inline-block;
   margin: auto;
-  width: 25em;
-  height: 2.5em;
   line-height: 2.5em;
   vertical-align: middle;
   text-align: center;
@@ -36,15 +41,68 @@ body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_re
   border: 2px solid #17aaff;
   border-radius: 5px;
   box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
-  background: linear-gradient(#a6f6ff, #3ddfff 48%, #63c6ff 52%, #17aaff);
   margin-top: 5px;
 }
-.content .button:active {
+.button_table a{
+	display: inline-block;
+	width: 128px;
+	height: 128px;
+	background-size: 128px;
+}
+
+#eatery{
+	background-image: url('/img/eatery.png');
+}
+#eatery:active{
+	background-image: url('/img/eatery-pressed.png');
+}
+#monitor{
+	background-image: url('/img/medic.png');
+}
+#monitor:active{
+	background-image: url('/img/medic-pressed.png');
+}
+#passes{
+	background-image: url('/img/passes.png');
+}
+#passes:active{
+	background-image: url('/img/passes-pressed.png');
+}
+
+#eatery-view{
+	background-image: url('/img/eatery-view.png');
+}
+#eatery-view:active{
+	background-image: url('/img/eatery-pressed-view.png');
+}
+#monitor-view{
+	background-image: url('/img/medic-view.png');
+}
+#monitor-view:active{
+	background-image: url('/img/medic-pressed-view.png');
+}
+#passes-view{
+	background-image: url('/img/passes-view.png');
+}
+#passes-view:active{
+	background-image: url('/img/passes-pressed-view.png');
+}
+
+.content .button_table{
+	margin: auto;
+}
+.content .button, .content .button_day{
+	background: linear-gradient(#a6f6ff, #3ddfff 48%, #63c6ff 52%, #17aaff);
+}
+.content .button_day_selected{
+	background: linear-gradient(#FFF0CA, #FFDE90 48%, #fcd78d 52%, #FFB300);
+}
+.content .button:active, .content .button_day:active, .content .button_day_selected {
   top: .1em;
   left: .1em;
   box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
 }
-.content .button:hover{
+.content .button:hover, .content .button_day:hover, .content .button_day_selected{
 	text-decoration: underline;
 }
 

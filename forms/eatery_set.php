@@ -44,7 +44,7 @@
 
 echo "
 <div class='content'>	
-	<h3>Заявка в столовую</h3>
+	<h1>Заявка в столовую</h1>
 	<div class='message_incorrect'>Внимание! <br> После отправки - данные заявки исправить нельзя! <br> <br></div>
 	<form action='get.php' method='post'>
 		<input name='hide' value='eatery' hidden>
