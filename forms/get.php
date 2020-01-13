@@ -162,14 +162,17 @@
 		if( ($class == "0") || ($class_name == "0") ) {$class=$class_name=0;}		
         $user_name = strip_tags($_POST['user_name']);
 		$week_number = strip_tags($_POST['week_number']);
-		if($week_number != date("W"))
+		$year_number = strip_tags($_POST['year_number']);
+		if($week_number != date("W") || $year_number != date("Y") )
 		{
 			echo "<div class='message_incorrect'>Изменение данных возможно только на некущую неделю!</div>";
 			exit();
 		}
 
         $sql = "SELECT * FROM passes WHERE week_number = $week_number 
-				AND class = $class AND  class_name = '$class_name' 
+				AND year_number = $year_number 
+				AND class = $class 
+				AND  class_name = '$class_name' 
 				AND day_number = $current_day";	
 		$result = check_error_db($mysqli, $sql);
         if ($result->num_rows > 0) 
@@ -181,8 +184,8 @@
 		}
 		else
 		{
-			$sql = "INSERT INTO passes (class, class_name, user_name, week_number, day_number)
-					VALUES ( $class, '$class_name', '$user_name', $week_number, $current_day)";
+			$sql = "INSERT INTO passes (class, class_name, user_name, week_number, year_number, day_number)
+					VALUES ( $class, '$class_name', '$user_name', $week_number, $year_number, $current_day)";
 			correct_or_error($mysqli, $sql, "<div class='message_correct'>Успешно создана новая запись!</div>");
 			$passes_id = $mysqli->insert_id;
 		}

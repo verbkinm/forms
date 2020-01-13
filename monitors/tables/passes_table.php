@@ -40,13 +40,15 @@
 		</thead>";
 
 		$week_number = date("W", strtotime($first_day_in_week));
+		$year_number = date("Y", $current_time);
 		$counter = 0;
 		for ($class_number = $_class_numbers[0]; $class_number <= count($_class_numbers); $class_number++) 
 		{
 			for ($class_letter_index = 0; $class_letter_index < count($_class_letters); $class_letter_index++) 
 			{
 				$class_name = $_class_letters[$class_letter_index];
-				$sql = "SELECT * FROM passes WHERE week_number = '$week_number' 
+				$sql = "SELECT * FROM passes WHERE week_number = $week_number
+						AND year_number = $year_number
 						AND class = $class_number 
 						AND class_name = '$class_name'";
 				$result = check_error_db($mysqli, $sql);
@@ -58,10 +60,9 @@
 
 					while ($request = $result->fetch_assoc()) 
 					{
-						
 						$full_class_name = $request['class'].$request['class_name'];
 						$user_name = $request['user_name'];
-						$date_time = date("d-m-Y H:i:s", strtotime($request['date_time']));
+						// $date_time = date("d-m-Y H:i:s", strtotime($request['date_time']));
 						
 						$passes_id = $request['id'];
 						$sub_sql = "SELECT * FROM passes_application WHERE passes_id = $passes_id ORDER BY student_name";

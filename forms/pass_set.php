@@ -21,6 +21,9 @@
 		
 	check_permission(['admin', 'user']); 
 	
+	if(empty($_SESSION['login']))
+		header("Location: http://".$_SERVER['SERVER_NAME']."/permission_error.php"); 
+	
 	$login = $_SESSION['login'];
 	
 	$sql_auth = "SELECT * FROM auth WHERE login = '$login'";	
@@ -51,8 +54,13 @@
 	else
 		$current_day = date("N");
 	
+	$year_number = date("Y", $current_time);
 	$week_number = date("W", $current_time);
-	$sql = "SELECT * FROM passes WHERE class = $class AND class_name = '$class_name' AND week_number = $week_number AND day_number = $current_day";	
+	$sql = "SELECT * FROM passes WHERE class = $class 
+			AND class_name = '$class_name' 
+			AND week_number = $week_number 
+			AND year_number = $year_number 
+			AND day_number = $current_day";	
 	$result = check_error_db($mysqli, $sql);
 	$request = mysqli_fetch_array($result);	
 	$passes_id = $request['id'];	
@@ -62,7 +70,7 @@
 	$result = check_error_db($mysqli, $sql);
 	
 	$days = new Days($current_day, $week_number, $date, $class, $class_name);
-echo "
+	echo "
 	<div class='content'>	
         <h1>Отсутствующие</h1>
 		<div class='message_incorrect'>Внимание! <br> Отсутствующие подаються поурочно, а не за целый день! <br> <br></div>
@@ -71,6 +79,7 @@ echo "
 			<input name='hide' value='missing' hidden>
 			<input name='current_day' value='$current_day' hidden>
 			<input name='week_number' value='$week_number' hidden>
+			<input name='year_number' value='$year_number' hidden>
 			<table class='table_set_data'>
 				<caption><a href='?date=$previos_week&day=$current_day'><< </a>Данные об отсутствующих на период с $first_day_in_week по $last_day_in_week<a href='?date=$next_week&day=$current_day'> >></a></caption>
 				<tr>

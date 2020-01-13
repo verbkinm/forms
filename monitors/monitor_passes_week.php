@@ -19,7 +19,7 @@
 	
 	require_once ("../lib/classes/class_Days.php");
 		
-	check_permission(['admin', 'soc-ped']); 
+	check_permission(['admin', 'soc-ped', 'user']); 
 
 	if(empty($_GET['class_number']) || empty($_GET['class_name']) || empty($_GET['date']))
 		header("Location: http://".$_SERVER['SERVER_NAME']."/permission_error.php"); 
