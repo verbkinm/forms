@@ -14,7 +14,7 @@
 		require_once("lib/connect.php");
 		require_once("lib/lib_auth.php");
 		
-		if( inRoles('ot') ) 
+		if( inRoles('ot_admin') || inRoles('ot_user') ) 
 			header("Location: http://".$_SERVER['SERVER_NAME']."/ot");
 		
 		require_once("blocks/header.php");

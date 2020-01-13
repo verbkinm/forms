@@ -64,7 +64,8 @@
 		if(!isset($_SESSION['roles']))
 			return false;
 
-		foreach($_SESSION['roles'] as $role){
+		foreach($_SESSION['roles'] as $role)
+		{
 			if(strcmp($str_role, $role) == 0)
 				return true;
 		}

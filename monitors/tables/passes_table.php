@@ -56,7 +56,6 @@
 					$children = array();
 					++$counter;
 
-						
 					while ($request = $result->fetch_assoc()) 
 					{
 						
@@ -70,7 +69,6 @@
 							
 						while ($sub_request = $sub_result->fetch_assoc()) 
 						{
-							// $children[$sub_request['student_name']] = array($sub_request['absence_due_to_illness'], $sub_request['absence_for_a_good_reason'], $sub_request['absence_of_a_valid_reason']);
 							if(isset($children[$sub_request['student_name']][0]))
 								$children[$sub_request['student_name']][0] += $sub_request['absence_due_to_illness'];
 							else
@@ -88,7 +86,7 @@
 					echo"
 					<tr>
 						<td>$counter</td>
-						<td>$class_number$class_name</td>";
+						<td><a href='monitor_passes_week.php?class_number=$class_number&class_name=$class_name&date=$date'>$class_number$class_name</a></td>";
 					print_children_data($children, 0);
 					print_children_data($children, 1);
 					print_children_data($children, 2);

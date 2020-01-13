@@ -18,7 +18,7 @@
 	require_once("../blocks/header.php");
 	require_once("../blocks/menu.php");
 	
-	check_permission(['admin', 'user', 'sco-pedagog']); 
+	check_permission(['admin', 'user', 'soc-pedagog']); 
 	
 	$date_begin	= $_POST['date_begin'];
 	$date_end = $_POST['date_end'];

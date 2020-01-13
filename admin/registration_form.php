@@ -19,7 +19,7 @@
 	require_once ("../blocks/header.php");
 	require_once ("../blocks/menu.php");
 	
-    check_permission(array('admin')); 
+    // check_permission(array('admin')); 
 
     $roles = [];
 

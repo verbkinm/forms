@@ -6,9 +6,9 @@ function ready()
 	recalculation();
 }
 	
-function add()
+function add(element)
 {
-	let tr = document.getElementById("add_button").parentNode.parentNode;
+	let tr = element.parentNode.parentNode;
 	let table = tr.parentNode;	
 	table.insertBefore(tr_with_fields(), tr);	
 	table_row_numbers();
@@ -43,12 +43,9 @@ function tr_with_fields()
 	tr_with_fields.setAttribute("class", "rows_with_data_fields");
 	tr_with_fields.innerHTML = `\
 						<td>X</td>\
-						<td><input name='name_of_patients${number}' required></td>\
-						<td><input type='number' min='0' max='100' name='absence_due_to_illness${number}' value='0'  onchange='data_change(this)' required></td>\
-						<td><input type='number' min='0' max='100' name='absence_for_a_good_reason${number}'value='0' onchange='data_change(this)' required></td>\
-						<td><input type='number' min='0' max='100' name='absence_of_a_valid_reason${number}' value='0' onchange='data_change(this)' required></td>\
-						<td><input type='number' value='0' readonly required></td>\
-						<td class='remove_unit' colspan='2'><input type='button' onclick='remove(this)'></td>`;
+						<td><input name='answer${number}' required></td>\
+						<td><input type='checkbox' name='is_correct${number}'></td>\
+						<td class='remove_unit'><input type='button' onclick='remove(this)'></td>`;
 	return tr_with_fields;
 }		
 
@@ -63,16 +60,23 @@ function recalculation()
 function table_row_numbers()
 {
 	let count  = 0;
-	document.querySelectorAll(".rows_with_data_fields").forEach(function(item, i, arr)
+	let tables = document.getElementsByClassName("table_answer");
+	for(var item = 0; item < tables.length; item++)
 	{
-		item.querySelector("td").innerHTML = 1+i;
-		count = i;
-	});
+		count  = 0;
+		tables[item].querySelectorAll(".rows_with_data_fields").forEach(function(item, i, arr)
+		{
+			item.querySelector("td").innerHTML = 1+i;
+			count = i;
+		});
+	}
 	
-	if(count > 48)
-		document.getElementById("add_button").setAttribute("disabled","");
-	else
-		document.getElementById("add_button").removeAttribute("disabled");
+	// if(count > 48)
+	// {
+		// document.getElementById("add_button").setAttribute("disabled","");
+	// }
+	// else
+		// document.getElementById("add_button").removeAttribute("disabled");
 }
 
 function data_change(element)

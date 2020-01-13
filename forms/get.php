@@ -66,6 +66,7 @@
 	function medic()
 	{
 		global $mysqli;
+		global $login;
 		$user_id = $mysqli->query("SELECT id FROM auth WHERE login = '$login'")->fetch_object()->id;
 		
 		$class = strip_tags($_POST['class']);
@@ -99,7 +100,11 @@
 	function eatery()
 	{
 		global $mysqli;
+		global $login;
 		$user_id = $mysqli->query("SELECT id FROM auth WHERE login = '$login'")->fetch_object()->id;
+		
+		if(is_null($user_id))
+			exit();
 		
 		$class = strip_tags($_POST['class']);
 		$class_name = strip_tags($_POST['class_name']);
@@ -132,6 +137,7 @@
 	function eatery_edit()
 	{
 		global $mysqli;
+		
 		$id	= strip_tags($_POST['id']);	
 		$count = strip_tags($_POST['count']);
 		$count_lg = strip_tags($_POST['count_lg']);

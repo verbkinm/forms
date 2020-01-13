@@ -216,8 +216,26 @@ body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_re
 	width: 85%;
 	text-align: center;
 }
-.table_passes .row_with_data_fields{
-	
+/* таблица добавления ответов к тестам*/
+.table_answer {
+  table-layout: fixed;
+  width: 100%;
+}
+.table_answer, .table_answer td{
+	border: 3px solid #cecece;
+	border-collapse: collapse; 
+}
+.table_answer thead{
+	font-size: 12px;
+}
+.table_answer td{
+	text-align:center;
+	padding: 10px;
+	width: 100px;
+}
+.table_answer input{
+	width: 85%;
+	text-align: center;
 }
 
 /*select при регистрации*/
@@ -238,11 +256,7 @@ body.set, .body_registration, .body_auth_form, .body_list, .body_print_eatery_re
 	background-color: #EEE; 
 	}
 .table_monitor tr:hover {
-	border: 2px solid green;
 	background: linear-gradient(#17aaff, #a6f6ff);
-}
-.table_monitor thead tr:hover {
-	border: 1px solid black;
 }
 .table_monitor thead:hover td, .table_user_list thead:hover td{
   background: linear-gradient(#17aaff, #a6f6ff);
