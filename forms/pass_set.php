@@ -65,6 +65,7 @@
 echo "
 	<div class='content'>	
         <h1>Отсутствующие</h1>
+		<div class='message_incorrect'>Внимание! <br> Отсутствующие подаються поурочно, а не за целый день! <br> <br></div>
     	<!-- <div class='message_incorrect'>Внимание! <br> Раздел в разработке! <br> <br></div> -->
 		<form action='get.php' method='post'>
 			<input name='hide' value='missing' hidden>
